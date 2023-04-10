@@ -24,4 +24,8 @@ https://github.com/actions/hello-world-javascript-action
 https://github.com/actions/checkout 
 (Checkout to commit and pull code from there.) 
 
-
+Environment Variables:
+echo "Commit ID: " + $GITHUB_SHA
+echo "Repository Name:" + $GITHUB_REPOSITORY
+echo "Workspace directory:" + $GITHUB_WORKSPACE
+echo "Token for authentication." + ${{ github.token }}"
