@@ -9,6 +9,5 @@ jobs:
             uses: actions/hello-world-javascript-action@v1
             with:
               who-to-greet: John
-            run: echo "Echo from Ubuntu"
           - name: Log greeting time
             run: echo "${{ steps.greet.outputs.time}}"
