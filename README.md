@@ -24,12 +24,12 @@ https://github.com/actions/hello-world-javascript-action
 
 https://github.com/actions/checkout 
 (Checkout to commit and pull code from there.)
- 
+
 https://github.com/marketplace?type=actions
 
 
 Environment Variables:
-echo "Commit ID: "  $GITHUB_SHA
-echo "Repository Name:"  $GITHUB_REPOSITORY
-echo "Workspace directory:"  $GITHUB_WORKSPACE
-echo "Token for authentication." ${{ github.token }}
+1. echo "Commit ID: "  $GITHUB_SHA
+2. echo "Repository Name:"  $GITHUB_REPOSITORY
+3. echo "Workspace directory:"  $GITHUB_WORKSPACE
+4. echo "Token for authentication." ${{ github.token }}
