@@ -2,4 +2,4 @@
 YAML
 '>' new lines will be replaced by a space
 
-| new lines will be preserved. 
+'|' new lines will be preserved. 
