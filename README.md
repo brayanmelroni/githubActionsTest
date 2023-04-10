@@ -19,5 +19,8 @@ https://dev.to/pwd9000/github-actions-all-the-shells-581h#:~:text=You%20can%20se
 https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsshell
 
 
-Action:
+Actions:
 https://github.com/actions/hello-world-javascript-action
+https://github.com/actions/checkout 
+(Checkout to commit and pull code from there.)
+
