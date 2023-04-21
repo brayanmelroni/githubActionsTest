@@ -13,6 +13,8 @@ jobs:
     run-github-actions:
         runs-on: ubuntu-latest
         steps:
+          - name: payload from repository_dispatch event
+            run: echo ${{ github.event.client_payload.integration }}
           - name: List Files
             run: |
               pwd
