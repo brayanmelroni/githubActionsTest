@@ -69,6 +69,9 @@ https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-ac
 
 cannot use 
 branches, branches-ignore
+
 tags, tags-ignore
+
 paths, paths-ignore
-at the same time. 
+
+both options at the same time. 
