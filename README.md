@@ -67,3 +67,8 @@ curl -L   -X POST   -H "Accept: application/vnd.github+json"   -H "Authorization
 Run workflow only on certain branches / certain file changes. 
 https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet
 
+cannot use 
+branches, branches-ignore
+tags, tags-ignore
+paths, paths-ignore
+at the same time. 
