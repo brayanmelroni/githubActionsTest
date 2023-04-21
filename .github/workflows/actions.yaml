@@ -4,7 +4,22 @@ on:
 # schedule: # cron: minutes hours dayOfMonth Month DayOfTheWeek
 #   - cron: "0/5 * * * *"
 #   - cron: "0/6 * * * *"
-# push:
+  push:
+    branches:
+    - master
+    - 'feature/*'  # matches zero or more characters, but does not match /       feature/feat/* will not be matched. 
+    - 'feature/**' # matches 0 or more of any character. 
+    - '!feature/featC'
+    #branches-ignore:
+    #- ''
+    tags:
+    - v1.*
+    #tags-ignore:
+    paths: # Runs when we only change the files that matches the paths. 
+    - '**.js'
+    - '!filename.js' # ! means it negative previous positive patterns. 
+    #paths-ignore:
+
   pull_request:
     types: [closed, assigned, opened, reopened]
   repository_dispatch:

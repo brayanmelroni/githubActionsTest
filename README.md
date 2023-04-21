@@ -62,4 +62,9 @@ Repositoty Dispatch Event:
 https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#repository_dispatch
 Trigger workflow in one repository from another. Trigger a workflow from application.
 
-curl -L   -X POST   -H "Accept: application/vnd.github+json"   -H "Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXX"  -H "X-GitHub-Api-Version: 2022-11-28"   https://api.github.com/repos/brayanmelroni/githubActionsTest/dispatches   -d '{"event_type":"build", "client_payload":{"unit":false,"integration":true}}'
+curl -L   -X POST   -H "Accept: application/vnd.github+json"   -H "Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXX"  -H "X-GitHub-Api-Version: 2022-11-28"   https://api.github.com/repos/username/githubActionsTest/dispatches   -d '{"event_type":"build", "client_payload":{"unit":false,"integration":true}}'
+
+https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet
+
+Run workflow only on certain branches
+Run workflow only on certain files change. 
