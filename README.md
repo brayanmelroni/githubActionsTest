@@ -34,7 +34,7 @@ Environment Variables:
 3. echo "Workspace directory:"  $GITHUB_WORKSPACE
 4. echo "Token for authentication." ${{ github.token }}
 5. $GITHUB_REF : Branch we pushed in to.
-
+---------------------------------------------------------------------------------------------------------------------------------------
 When we make a Pull request we are running github actions as if the code is merged. 
 https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
 
@@ -57,13 +57,14 @@ https://crontab.guru/examples.html
 0 12 * AUG *
 
 0 12 * AUG 0        [ 0 - Sunday ] 
-
+---------------------------------------------------------------------------------------------------------------------------------------
 Repositoty Dispatch Event:
 https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#repository_dispatch
 Trigger workflow in one repository from another. Trigger a workflow from application.
 
 curl -L   -X POST   -H "Accept: application/vnd.github+json"   -H "Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXX"  -H "X-GitHub-Api-Version: 2022-11-28"   https://api.github.com/repos/username/githubActionsTest/dispatches   -d '{"event_type":"build", "client_payload":{"unit":false,"integration":true}}'
 
+---------------------------------------------------------------------------------------------------------------------------------------
 Run workflow only on certain branches / certain file changes. 
 https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet
 
