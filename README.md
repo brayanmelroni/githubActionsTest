@@ -57,3 +57,7 @@ https://crontab.guru/examples.html
 0 12 * AUG *
 
 0 12 * AUG 0        [ 0 - Sunday ] 
+
+Repositoty Dispatch Event:
+https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#repository_dispatch
+Trigger workflow in one repository from another. Trigger a workflow from application. 
