@@ -33,3 +33,20 @@ Environment Variables:
 2. echo "Repository Name:"  $GITHUB_REPOSITORY
 3. echo "Workspace directory:"  $GITHUB_WORKSPACE
 4. echo "Token for authentication." ${{ github.token }}
+5. $GITHUB_REF : Branch we pushed in to.
+
+When we make a Pull request we are running github actions as if the code is merged. 
+https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
+
+Reference for CronJobs: 
+https://crontab.guru/ [cron: minutes hours dayOfMonth Month DayOfTheWeek]
+https://crontab.guru/examples.html
+
+1 * * * *
+1,2 * * * *
+1-3 * * * *
+0/15 * * * *        Runs every 15 minutes starting from minute 0
+20/15 * * * *       Runs every 15 minutes starting from minute 20
+0  * * * *          Every hour
+0 12 * AUG *
+0 12 * AUG 0        0 - Sunday 
