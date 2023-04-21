@@ -56,4 +56,4 @@ https://crontab.guru/examples.html
 
 0 12 * AUG *
 
-0 12 * AUG 0        0 - Sunday 
+0 12 * AUG 0        [ 0 - Sunday ] 
