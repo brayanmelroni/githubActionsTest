@@ -30,19 +30,6 @@ jobs:
           --fail
   push_a_random_file:
     runs-on: ubuntu-latest
-    permissions:
-      actions: write
-      checks: write
-      contents: write
-      deployments: write
-      discussions: write
-      issues: write
-      metadata: read
-      packages: write
-      pullRequests: write
-      repositoryProjects: write
-      securityEvents: write
-      statuses: write
     steps:
       - name: push random file 1
         run: |
