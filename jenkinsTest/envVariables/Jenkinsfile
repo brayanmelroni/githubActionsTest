@@ -1,0 +1,17 @@
+pipeline{
+    agent any
+    environment{
+        def repositoryURL = "https://github.com/JSainsburyPLC/sts-docker-image/blob/master/test/test_scripts.sh"
+        def count = 10
+        def isClicked = true
+    }
+    stages{
+        stage("Demo"){
+            steps{
+                echo "repositoryURL is set to ${repositoryURL} \n"
+                echo "count is set to ${count} \n"
+                echo "isClicked is set to ${isClicked}"
+            }
+        }
+    }
+}

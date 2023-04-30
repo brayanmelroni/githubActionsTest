@@ -1,0 +1,55 @@
+name: Actions Workflow
+#on: [push, pull_request]
+on: 
+# schedule: # cron: minutes hours dayOfMonth Month DayOfTheWeek
+#   - cron: "0/5 * * * *"
+#   - cron: "0/6 * * * *"
+  push:
+    branches:
+    - master
+    - 'feature/*'  # matches zero or more characters, but does not match /       feature/feat/* will not be matched. 
+    - 'feature/**' # matches 0 or more of any character. 
+    - '!feature/featC'
+    #branches-ignore:
+    #- ''
+    tags:
+    - v1.*
+    #tags-ignore:
+    paths: # Runs when we only change the files that matches the paths. 
+    - '**.js'
+    - '!filename.js' # ! means it negative previous positive patterns. 
+    #paths-ignore:
+
+  pull_request:
+    types: [closed, assigned, opened, reopened]
+  repository_dispatch:
+    types: [build]
+jobs:
+    run-github-actions:
+        runs-on: ubuntu-latest
+        steps:
+          - name: payload from repository_dispatch event
+            run: echo ${{ github.event.client_payload.integration }}
+          - name: List Files
+            run: |
+              pwd
+              ls -a
+              echo "Commit ID: "  $GITHUB_SHA
+              echo "Repository Name:"  $GITHUB_REPOSITORY
+              echo "Workspace directory:"  $GITHUB_WORKSPACE
+              echo "Token for authentication." ${{ github.token }}
+              # git clone git@github:$GITHUB_REPOSITORY
+              # git checkout $GITHUB_SHA
+          - name: Checkout
+            uses: actions/checkout@v1
+          - name: List files after checkout
+            run: |
+              pwd
+              ls -a    
+          - name: Simple JS Action
+            id: greet
+            uses: actions/hello-world-javascript-action@v1
+            with:
+              who-to-greet: John
+          - name: Log output of Simple JS Action 
+            run: echo "${{ steps.greet.outputs.time}}"

@@ -1,0 +1,40 @@
+pipeline{
+    agent any
+    environment{
+        def num = 123
+    }
+    parameters{
+        booleanParam(defaultValue: false, description: "Enabled Or not", name: "isEnabled")
+        string(defaultValue: "DEV", description: "Environment to deploy", name: "envDep")
+        choice(choices: ["TEST","QA","DEV","PRD"], description: "Environment to deploy", name: "choiceEnvDep")
+    }
+    stages{
+        stage("Demo"){
+            steps{
+                sh """
+                    echo "Line1"
+                    echo "Line2"
+                """
+                script{
+                    def inside = 34 // This variable is only visible within this stage. 
+                    if(params.isEnabled == false){
+                        currentBuild.result = "SUCCESS"
+                        return 
+                    }
+                    else{
+                        echo "isEnabled is set to true within Groovy"
+                    }
+                }
+                echo "isEnabled is set to ${params.isEnabled} \n"
+                echo "envDep is set to ${params.envDep} \n"
+                echo "choiceEnvDep is set to ${choiceEnvDep}"
+                display("Ana", 34)
+            }
+        }
+    }
+}
+def display(String text, int num){
+    // a function is isolated. It cannot access any variables declared outside.
+    def count = 10 // This is only availble within the function
+    echo "text is set to ${text}"
+}

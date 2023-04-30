@@ -1,0 +1,45 @@
+pipeline{
+    agent any
+    tools {
+        maven 'maven'
+        jdk 'corretto-11.0.16.1'
+    }
+    stages{
+        stage("Clean Up"){
+            steps{
+                deleteDir()
+            }
+        }
+        stage("Clone Repo"){
+            steps{
+                sh "git clone https://github.com/jenkins-docs/simple-java-maven-app.git"
+                echo "Repo Cloned."
+            }
+        }
+        stage("Build"){
+            steps{
+                dir("simple-java-maven-app"){
+                    sh "mvn clean install"
+                    sleep(10)
+                }
+            }  
+        }
+        stage("Test"){
+            steps{
+                dir("simple-java-maven-app"){
+                    sh "mvn test"
+                }
+            }  
+        }
+        stage("Build Remote-1"){
+            steps{
+                build 'envPipeline'
+            }
+        }
+        stage("Build Remote-2"){
+            steps{
+                build job: 'Params', parameters: [[$class: 'BooleanParameterValue', name: "isEnabled", value: true]]
+            }
+        }
+    }
+}
