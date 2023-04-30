@@ -30,6 +30,7 @@ jobs:
           --fail
   push_a_random_file:
     runs-on: ubuntu-latest
+    permissions: read-all|write-all
     steps:
       - name: push random file 1
         run: |
