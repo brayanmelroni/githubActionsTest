@@ -96,3 +96,6 @@ https://docs.github.com/en/actions/learn-github-actions/variables#default-enviro
 
 ${{ secrets.GITHUB_TOKEN }}
 https://docs.github.com/en/actions/security-guides/automatic-token-authentication
+
+https://docs.github.com/en/actions/using-jobs/assigning-permissions-to-jobs
+
