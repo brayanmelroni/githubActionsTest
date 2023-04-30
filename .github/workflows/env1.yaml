@@ -42,7 +42,7 @@ jobs:
           git fetch
           git checkout master
           git branch --set-upstream-to=origin/master
-          gi pull 
+          git pull 
           ls -a
           echo $RANDOM >> random.txt
           ls -a 
