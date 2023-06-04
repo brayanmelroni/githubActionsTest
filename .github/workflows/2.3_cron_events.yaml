@@ -1,0 +1,17 @@
+name: Actions Workflow Based On CronJobs
+on: 
+ schedule: # cron: minutes hours dayOfMonth Month DayOfTheWeek            https://crontab.guru/
+   - cron: "0/5 * * * *"
+   - cron: "0/6 * * * *"    # every six minutes. 
+jobs:
+    run-github-actions-job:
+        runs-on: ubuntu-latest
+        steps:
+          - name: List files after checkout
+            run: |
+              pwd
+              ls -a
+              echo "Commit ID: "  $GITHUB_SHA
+              echo "Repository Name:"  $GITHUB_REPOSITORY
+              echo "Workspace directory:"  $GITHUB_WORKSPACE
+              echo "Token for authentication." ${{ github.token }}
