@@ -1,5 +1,5 @@
 name: Actions Workflow
-on: [push, pull_request] #  pull_request by default runs only on  opened, reopened, synchronized activity types.  
+on: [pull_request] #  pull_request by default runs only on  opened, reopened, synchronized activity types.  
 jobs:
     run-github-actions-job:
         runs-on: ubuntu-latest

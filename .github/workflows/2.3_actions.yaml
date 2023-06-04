@@ -20,8 +20,6 @@ on:
     - '!filename.js' # ! means it negative previous positive patterns. 
     #paths-ignore:
 
-  pull_request:
-    types: [closed, assigned, opened, reopened]
   repository_dispatch:
     types: [build]
 jobs:
