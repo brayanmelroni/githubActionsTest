@@ -40,9 +40,3 @@ jobs:
               echo "Token for authentication." ${{ github.token }}
               # git clone git@github:$GITHUB_REPOSITORY
               # git checkout $GITHUB_SHA
-          - name: Checkout
-            uses: actions/checkout@v1
-          - name: List files after checkout
-            run: |
-              pwd
-              ls -a    
