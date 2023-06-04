@@ -8,4 +8,4 @@ jobs:
         steps:
           - name: payload from repository_dispatch event
             run: echo ${{ github.event.client_payload.integration }}
-# Helpful to trigger a workflow in one repostory from another. 
+# Helpful to trigger a workflow in one repostory from another.
