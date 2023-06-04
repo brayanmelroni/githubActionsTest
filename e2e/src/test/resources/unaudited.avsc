@@ -1,0 +1,170 @@
+{
+  "name": "Unaudited",
+  "type": "record",
+  "namespace": "uk.co.sainsburys.sts.avro",
+  "fields": [
+    {
+      "name": "time_to_live",
+      "type": [ "null", "long" ],
+      "default" : null
+    },
+    {
+      "name": "BusinessDay",
+      "type": "string"
+    },
+    {
+      "name": "StartTransDateTime",
+      "type": "string"
+    },
+    {
+      "name": "EndTransDateTime",
+      "type": "string"
+    },
+    {
+      "name": "TransactionID",
+      "type": "string"
+    },
+    {
+      "name": "TransactionType",
+      "type": "string"
+    },
+    {
+      "name": "UnitID",
+      "type": "string"
+    },
+    {
+      "name": "Location",
+      "type": "string"
+    },
+    {
+      "name": "CustomerOrderNumber",
+      "type": [ "null", "string" ],
+      "default" : null
+    },
+    {
+      "name": "OperatorID",
+      "type": [ "null", "string" ],
+      "default" : null
+    },
+    {
+      "name": "ReplayIndicator",
+      "type": "string"
+    },
+    {
+      "name": "Products",
+      "type": [{
+        "type": "array",
+        "items": {
+          "name": "Products_record",
+          "type": "record",
+          "fields": [
+            {
+              "name": "ActualSalesUnitPrice",
+              "type": ["null","string"],
+              "default": null
+            },
+            {
+              "name": "EAN",
+              "type": ["null","string"],
+              "default": null
+            },
+            {
+              "name": "ExtendedAmount",
+              "type": ["null","string"],
+              "default": null
+            },
+            {
+              "name": "MerchandiseHierarchy",
+              "type": ["null","string"],
+              "default": null
+            },
+            {
+              "name": "Quantity",
+               "type": ["null","string"],
+               "default": null
+            },
+            {
+              "name": "QuantityUnitOfMeasureCode",
+              "type": ["null","string"],
+              "default": null
+            },
+            {
+              "name": "QuantityUnits",
+               "type": ["null","string"],
+               "default": null
+            },
+            {
+              "name": "RegularSalesUnitPrice",
+               "type": ["null","string"],
+               "default": null
+            },
+            {
+              "name": "SKU",
+               "type": ["null","string"],
+               "default": null
+            }
+          ]
+        }
+      },
+      "null"]
+    },
+    {
+      "name": "Tender",
+      "type": [{
+        "type": "array",
+        "items": {
+          "name": "Tender_record",
+          "type": "record",
+          "fields": [
+            {
+              "name": "TenderAmount",
+               "type": ["null","string"],
+               "default": null
+            },
+            {
+              "name": "TenderCashback",
+               "type": ["null","string"],
+               "default": null
+            },
+            {
+              "name": "TenderCurrency",
+               "type": ["null","string"],
+               "default": null
+            },
+            {
+              "name": "TenderType",
+              "type": ["null","string"],
+              "default": null
+            }
+          ]
+        }
+      }
+      ,"null"]
+    },
+    {
+      "name": "Total",
+      "type": [{
+        "name": "Total",
+        "type": "record",
+        "fields": [
+          {
+            "name": "TransactionNetAmount",
+            "type": ["null","string"],
+            "default": null
+          },
+          {
+            "name": "TransactionTaxAmount",
+            "type": ["null","string"],
+            "default": null
+          },
+          {
+            "name": "TransactionVoidAmount",
+            "type": ["null","string"],
+            "default": null
+          }
+        ]
+      },
+      "null"]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+syntax = "proto2";
+
+
+option java_outer_classname = "R10Record";
+
+package src;
+
+message Record {
+	required string topic = 5;
+
+	message MetaData {
+		required string key = 2;
+		required string value = 3;
+		required string unknown = 4;
+	}
+
+	message Payload {
+		required string payloadType = 3;
+		repeated MetaData metaData = 4;
+		required string xml = 5;
+	}
+
+required Payload payloads = 6;
+
+}

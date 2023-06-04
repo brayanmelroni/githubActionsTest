@@ -1,0 +1,17 @@
+{
+    "CreateTime": 1685363433593,
+    "headers": {
+      "STS_HEADERS": "{\"r10TransactionId\":\"LEXJO8KYNP\",\"lineage\":[{\"processor\":\"sts-r10-avro-processor\",\"sourceTopic\":\"sts-prd-raw-r10-retail-v2\",\"sourcePartition\":6,\"sourceOffset\":75729003,\"timestamp\":\"2023-05-29T12:30:30.335344\"},{\"processor\":\"sts-js-avro-processor\",\"sourceTopic\":\"sts-prd-r10-retail-avro-v1\",\"sourcePartition\":5,\"sourceOffset\":258476865,\"timestamp\":\"2023-05-29T12:30:33.593236\"}]}",
+      "ce-id": "1ebc48df-90ed-48b4-91f1-49a82f76f85c",
+      "ce-source": "\"urn:js:r10\"",
+      "ce-specversion": "1.0",
+      "ce-type": "R10",
+      "message-type": "cloudevent",
+      "spring_json_header_types": "{\"ce-source\":\"java.net.URI\",\"ce-specversion\":\"java.lang.String\",\"ce-type\":\"java.lang.String\",\"ce-id\":\"java.lang.String\",\"message-type\":\"java.lang.String\",\"STS_HEADERS\":\"java.lang.String\"}"
+    },
+    "key": "2248",
+    "offset": 187583131,
+    "partition": 5,
+    "schema_id": 194,
+    "topic": "sts-prd-js-sales-avro-v1"
+  }
