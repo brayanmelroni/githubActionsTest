@@ -1,8 +1,8 @@
 name: Actions Workflow Based On CronJobs
 on: 
  schedule: # cron: minutes hours dayOfMonth Month DayOfTheWeek            https://crontab.guru/
-   - cron: "0/5 * * * *"
-   - cron: "0/6 * * * *"    # every six minutes. 
+   - cron: "0/1 * * * *"
+   - cron: "0/2 * * * *"    # every six minutes. 
 jobs:
     run-github-actions-job:
         runs-on: ubuntu-latest
