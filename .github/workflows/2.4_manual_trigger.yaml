@@ -1,0 +1,11 @@
+name: Actions Workflow Based On manual trigger of repository dispatch event
+on: 
+  repository_dispatch:
+    types: [build]
+jobs:
+    run-github-actions:
+        runs-on: ubuntu-latest
+        steps:
+          - name: payload from repository_dispatch event
+            run: echo ${{ github.event.client_payload.integration }}
+# Helpful to trigger a workflow in one repostory from another. 

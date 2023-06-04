@@ -1,9 +1,5 @@
 name: Actions Workflow
-#on: [push, pull_request]
 on: 
-# schedule: # cron: minutes hours dayOfMonth Month DayOfTheWeek
-#   - cron: "0/5 * * * *"
-#   - cron: "0/6 * * * *"
   push:
     branches:
     - master
@@ -19,9 +15,7 @@ on:
     - '**.js'
     - '!filename.js' # ! means it negative previous positive patterns. 
     #paths-ignore:
-
-  repository_dispatch:
-    types: [build]
+    
 jobs:
     run-github-actions:
         runs-on: ubuntu-latest
