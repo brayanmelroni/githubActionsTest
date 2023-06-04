@@ -1,13 +1,13 @@
 name: Actions Workflow
 on: [push, pull_request]
 jobs:
-    run-github-actions:
+    run-github-actions-job:
         runs-on: ubuntu-latest
         steps:
-          - name: Simple JS Action
+          - name: Step1-Simple JS Action
             id: greet
             uses: actions/hello-world-javascript-action@v1
             with:
               who-to-greet: John
-          - name: Log output of Simple JS Action 
+          - name: Step2-Log output of Simple JS Action 
             run: echo "${{ steps.greet.outputs.time}}"
