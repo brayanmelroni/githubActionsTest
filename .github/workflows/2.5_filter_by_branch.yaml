@@ -1,0 +1,17 @@
+name: Branch Filtering
+on: 
+  push: # pull_request 
+    branches:
+    - master
+    - 'feature/*'  # matches zero or more characters, but does not match /       feature/feat/* will not be matched. 
+    - 'feature/**' # matches 0 or more of any character including /
+    - '!feature/featC'
+jobs:
+    run-github-actions-job:
+        runs-on: ubuntu-latest
+        steps:
+          - name: List files after checkout
+            run: |
+              pwd
+              ls -a
+              echo "Commit ID: "  $GITHUB_SHA
