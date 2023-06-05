@@ -1,4 +1,4 @@
-name: Branch Filtering
+name: Branch Filtering 1
 on: 
   push: # pull_request 
     branches:
