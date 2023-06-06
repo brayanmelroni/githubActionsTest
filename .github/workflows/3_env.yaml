@@ -1,0 +1,18 @@
+name: ENV variable for all jobs
+on: push
+env:
+  WF_ENV: AVAILABLE_TO_ALL_JOBS
+jobs:
+  log-env:
+    runs-on: ubuntu-latest 
+    steps:
+      - name: log ENV variables
+        run: |
+          echo "WF_ENV: ${WF_ENV}"
+  
+
+
+
+
+
+
