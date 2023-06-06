@@ -1,4 +1,4 @@
-name: ENV variable for all jobs
+name: ENV variables
 on: push
 env:
   WF_ENV: AVAILABLE_TO_ALL_JOBS
@@ -9,9 +9,12 @@ jobs:
       JOB_ENV : ONLY_AVAILABLE_TO_LOG_ENV_JOB
     steps:
       - name: log ENV variables
+        env:
+          STEP_ENV : ONLY_AVAILABLE_TO_THIS_STEP
         run: |
           echo "WF_ENV: ${WF_ENV}"
           echo "JOB_ENV: ${JOB_ENV}"
+          echo "STEP_ENV: ${STEP_ENV}"
   
 
 
