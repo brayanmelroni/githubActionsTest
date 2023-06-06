@@ -5,8 +5,8 @@ env:
 jobs:
   log-env:
     runs-on: ubuntu-latest 
-      env:
-        JOB_ENV : ONLY_AVAILABLE_TO_LOG_ENV_JOB
+    env:
+      JOB_ENV : ONLY_AVAILABLE_TO_LOG_ENV_JOB
     steps:
       - name: log ENV variables
         run: |
