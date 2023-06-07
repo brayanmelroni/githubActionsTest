@@ -21,29 +21,6 @@ jobs:
           echo "WF_ENV: ${WF_ENV}"
           echo "JOB_ENV: ${JOB_ENV}"
           echo "STEP_ENV: ${STEP_ENV}"
-  log-default-env:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Default ENV variables
-        run: |
-          echo "HOME: ${HOME}"
-          echo "GITHUB_WORKFLOW: ${GITHUB_WORKFLOW}"
-          echo "GITHUB_ACTION: ${GITHUB_ACTION}"
-          echo "GITHUB_ACTIONS: ${GITHUB_ACTIONS}"
-          echo "GITHUB_ACTOR: ${GITHUB_ACTOR}"
-          echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
-          echo "GITHUB_EVENT_NAME: ${GITHUB_EVENT_NAME}"
-          echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
-          echo "GITHUB_SHA : ${GITHUB_SHA}"
-          echo "GITHUB_REF: ${GITHUB_REF}"
-          echo "WF_ENV: ${WF_ENV}"
-          echo "JOB_ENV: ${JOB_ENV}"
-          echo "STEP_ENV: ${STEP_ENV}"
-# GITHUB_ACTION  =  a unique identifier for the step
-# GITHUB_ACTIONS =  always true, if we are running a github workflow. Can be used to check whether some tests are running on CI or locally
-# GITHUB_WORKSPACE = locations of our files, if checkout action is used. all our commands run from this directory. 
-# GITHUB_SHA =  Commit ID
-# GITHUB_REF =  Branch that triggered to run GHA
 
 
 
