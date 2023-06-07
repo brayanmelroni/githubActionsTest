@@ -1,4 +1,11 @@
-${{ secrets.PASSPHRASE}}
-${{ github.repository }}
+name: print all contexts github, secrets, steps etc${{ github.repository }}, ${{ secrets.PASSPHRASE}} "${{ steps.greet.outputs.time}}
+on: push
+jobs:
+  all_contexts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub Context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
 
-contexts : secrets context, github context 
