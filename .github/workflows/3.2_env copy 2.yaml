@@ -1,5 +1,5 @@
-name: ENV variables
-on: pull_request
+name: Secrets 
+on: push
 env:
   WF_ENV: ${{ secrets.WF_ENV }}
 jobs:
