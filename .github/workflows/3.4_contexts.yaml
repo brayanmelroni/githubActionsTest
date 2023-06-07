@@ -6,6 +6,6 @@ jobs:
     steps:
       - name: Dump GitHub Context
         env:
-          GITHUB_CONTEXT: ${{ github }}
+          GITHUB_CONTEXT: 23
         run: echo "$GITHUB_CONTEXT"
 
