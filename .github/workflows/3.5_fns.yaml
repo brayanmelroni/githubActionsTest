@@ -13,3 +13,21 @@ jobs:
           echo ${{ startsWith('hello','he') }}
           echo ${{ endsWith('hello','lo') }}
           echo ${{ format('Hello {0} {1} {2}','World','!','!') }}
+  job-status-functions:
+    runs-on: ubuntu-latest
+    # Default behaviour: If one step fails other steps will not continue. 
+    steps:
+      - name: Dump github Context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: eccho "$GITHUB_CONTEXT"
+      - name: Dump job Context
+        if: failure()  # Runs only if previous step fails. 
+        env:
+          JOB_CONTEXT: ${{ toJson(job) }}
+        run: echo "$JOB_CONTEXT"
+      - name: Dump steps Context
+        if: always() # Always runs irrespecrive of previous steps failed or not. 
+        env:
+          STEPS_CONTEXT: ${{ toJson(steps) }}
+        run: echo "$STEPS_CONTEXT"
