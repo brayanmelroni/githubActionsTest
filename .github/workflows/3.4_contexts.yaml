@@ -1,3 +1,4 @@
+# https://docs.github.com/en/actions/learn-github-actions/contexts
 name: print all contexts for example github, secrets, steps etc
 on: push
 jobs:
