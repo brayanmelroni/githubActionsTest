@@ -107,3 +107,4 @@ A secret can only be in size of 64 Kb.
 GPG Download Links  -  https://gnupg.org/ https://gnupg.org/download/index.html
 GPG command to encrypt       gpg --symmetric --cipher-algo AES256 test.json
 ---------------------------------------------------------------------------------------------------------------------------------------
+
