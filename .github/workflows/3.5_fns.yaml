@@ -1,0 +1,15 @@
+# https://docs.github.com/en/actions/learn-github-actions/expressions#functions 
+# https://docs.github.com/en/actions/learn-github-actions/expressions#status-check-functions
+name: expression fns and job status fns
+on: [pull_request,push]
+jobs:
+  expression-functions:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' # This job runs only if the event name is push. 
+    steps:
+      - name: dump
+        run: |
+          echo ${{ contains('hello','ll') }}
+          echo ${{ startsWith('hello','he') }}
+          echo ${{ endsWith('hello','lo') }}
+          echo ${{ format('Hello {0} {1} {2}','World','!','!') }}

@@ -112,7 +112,8 @@ Contexts: example github, secrets, steps etc
 https://docs.github.com/en/actions/learn-github-actions/contexts
 
 ---------------------------------------------------------------------------------------------------------------------------------------
-Functions: https://docs.github.com/en/actions/learn-github-actions/expressions#functions 
+Expression Functions: https://docs.github.com/en/actions/learn-github-actions/expressions#functions 
 
+Status check functions: https://docs.github.com/en/actions/learn-github-actions/expressions#status-check-functions
 ---------------------------------------------------------------------------------------------------------------------------------------
 
