@@ -1,4 +1,4 @@
-name: Secrets 
+name: Secrets-X 
 on: push
 env:
   WF_ENV: ${{ secrets.WF_ENV }}
