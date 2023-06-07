@@ -115,5 +115,7 @@ https://docs.github.com/en/actions/learn-github-actions/contexts
 Expression Functions: https://docs.github.com/en/actions/learn-github-actions/expressions#functions 
 
 Status check functions: https://docs.github.com/en/actions/learn-github-actions/expressions#status-check-functions
+
+if [ failure() , always() ] functions
 ---------------------------------------------------------------------------------------------------------------------------------------
 
