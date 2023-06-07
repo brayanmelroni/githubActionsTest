@@ -105,6 +105,7 @@ Usage of large encrypted secrets.
 https://docs.github.com/en/actions/security-guides/encrypted-secrets#storing-large-secrets
 A secret can only be in size of 64 Kb. 
 GPG Download Links  -  https://gnupg.org/ https://gnupg.org/download/index.html
+
 GPG command to encrypt       gpg --symmetric --cipher-algo AES256 test.json
 ---------------------------------------------------------------------------------------------------------------------------------------
 Contexts: example github, secrets, steps etc 
@@ -116,6 +117,7 @@ Expression Functions: https://docs.github.com/en/actions/learn-github-actions/ex
 
 Status check functions: https://docs.github.com/en/actions/learn-github-actions/expressions#status-check-functions
 
-if [ failure() , always() ] functions
+if failure(), always() functions 
+
 ---------------------------------------------------------------------------------------------------------------------------------------
 
