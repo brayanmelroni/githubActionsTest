@@ -1,4 +1,4 @@
-name: print all contexts github, secrets, steps etc${{ github.repository }}, ${{ secrets.PASSPHRASE}} "${{ steps.greet.outputs.time}}
+name: print all contexts github, secrets, steps etc
 on: push
 jobs:
   all_contexts:
