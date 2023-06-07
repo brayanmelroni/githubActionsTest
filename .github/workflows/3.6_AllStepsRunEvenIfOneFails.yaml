@@ -1,0 +1,29 @@
+name: All steps run even if one fails. continue-on-error -> true ,  timeout-minutes -> 360
+on: [push] 
+jobs:
+    run-shell-command:
+        runs-on: ubuntu-latest
+        timeout-minutes: 360 # timeout for job 
+        steps:
+          - name: echo a String
+            run: ech "Echo from Ubuntu"
+            continue-on-error: true # This step will error, however all the other steps will be executed. 
+          - name: multiline script
+            run: |
+              node -v
+              npm -v  
+            timeout-minutes: 20 # timeout for step  
+          - name: Python Command
+            run: |
+               import platform
+               print (platform.processor())
+            shell: python  
+    run-windows-command:
+        runs-on: windows-latest
+        needs: [run-shell-command]
+        steps:
+          - name: Directory PowerShell
+            run: Get-Location
+          - name: Directory Bash
+            run: pwd
+            shell: bash
