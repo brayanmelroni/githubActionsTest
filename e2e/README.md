@@ -24,7 +24,7 @@ The setup involves following resources. 
     grada-cranberry-prod AWS
     account](#RestartingPodsWithEncryptionKeyCreation)
 
-![](media/image1.png)
+![](./media/image1.png)
 
 ## Role sts in golf-prd-cluster(EKS) in js-gol-f-prod AWS account
 
@@ -33,7 +33,7 @@ rule specifies the actions it allows performing on different resources
 in the cluster. Existing sts role allows performing any action on
 deployments in sts namespace. 
 
-![](media/image2.png)
+![](./media/image2.png)
 
 ## Role Binding object: sts-binding in golf-prd-cluster (EKS) in js-gol-f-prod AWS account
 
@@ -41,7 +41,7 @@ A Role Binding object in an EKS cluster links a role with a user. sts
 role in EKS cluster is bound to a user called sts via an existing role
 binding object called sts-binding.  
 
-![](media/image3.png)
+![](./media/image3.png)
 
 That means the sts user can perform all actions defined in sts role. So
 that sts user can perform any action on a deployment. 
@@ -60,7 +60,7 @@ aws-auth -n kube-system
 
            Updated aws-auth config map looks like below. 
 
-           ![](media/image4.png) 
+           ![](./media/image4.png) 
 
            After updating above configmap,
 \'sts-prd-js-encryption-role\' IAM role inherits all the permissions
