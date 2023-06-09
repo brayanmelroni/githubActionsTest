@@ -1,0 +1,19 @@
+name: Running the same job with multiple configurations using matrix - in following example 3x3 = 9 Jobs
+on: [push] 
+jobs:
+    node-version:
+        strategy:
+          matrix:
+            os: [macos-latest, ubuntu-latest, windows-latest]
+            node_version: [6,8,10]
+          fail-fast: true #  fail-fast: true means, if one job fails, all other jobs running in this matrix will stop.  
+          max-parallel: 5 #  Number of jobs that runs parallely. 
+        runs-on: ${{ matrix.os }}
+        steps:
+          - name: Log node version
+            run: node -v
+          - uses: actions/setup-node@v1
+            with:
+              node-version: ${{ matrix.node_version }} 
+          - name: Log node version
+            run: node -v
