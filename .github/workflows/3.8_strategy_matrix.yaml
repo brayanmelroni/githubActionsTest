@@ -1,5 +1,5 @@
 name: Running the same job with multiple configurations using matrix - in following example 3x3 = 9 Jobs
-on: [push] 
+on: [pull_request] 
 jobs:
     node-version:
         strategy:

@@ -1,5 +1,5 @@
 name: All steps run even if one fails. continue-on-error -> true ,  timeout-minutes -> 360
-on: [push] 
+on: [pull_request] 
 jobs:
     run-shell-command:
         runs-on: ubuntu-latest

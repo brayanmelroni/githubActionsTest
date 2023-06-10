@@ -1,5 +1,5 @@
 name: Change Node JS Version in Runner VM https://github.com/actions/setup-node
-on: [push] 
+on: [pull_request] 
 jobs:
     node-version:
         runs-on: ubuntu-latest

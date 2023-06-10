@@ -2,7 +2,7 @@ name: Branch Filtering
 on: 
   push: # pull_request 
     branches:
-    - master
+    #- master
     - 'feature/*'  # matches zero or more characters, but does not match /       feature/feat/* will not be matched. 
     - 'feature/**' # matches 0 or more of any character including /
     - '!feature/featC'

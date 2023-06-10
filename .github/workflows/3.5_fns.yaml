@@ -1,7 +1,7 @@
 # https://docs.github.com/en/actions/learn-github-actions/expressions#functions 
 # https://docs.github.com/en/actions/learn-github-actions/expressions#status-check-functions
 name: expression fns and job status fns
-on: [pull_request,push]
+on: [pull_request]
 jobs:
   expression-functions:
     runs-on: ubuntu-latest

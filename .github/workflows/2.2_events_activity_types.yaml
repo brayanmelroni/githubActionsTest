@@ -1,6 +1,5 @@
 name: Actions Workflow Events Actions 
 on: 
-  push: 
   pull_request:
     types: [closed, assigned, opened, reopened]
     # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows 

@@ -1,6 +1,6 @@
 name: Branch Filtering 1
 on: 
-  push: # pull_request 
+  pull_request: # push  
     branches:
     - master
     - 'feature/*'  # matches zero or more characters, but does not match /       feature/feat/* will not be matched. 
