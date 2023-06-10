@@ -8,7 +8,7 @@ jobs:
           #env: 
           #ports: []
           #volumes: 
-          #options: --cpus 1 --host
+          options: --cpus 1 --host
         steps:
           - name: Log node version
             run: |
