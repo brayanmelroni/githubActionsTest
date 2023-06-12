@@ -1,4 +1,4 @@
-name: Run a job in a container
+name: Run two containers in a job - as in the case of Docker Compose
 on: push 
 jobs:
     node-docker:
