@@ -1,7 +1,7 @@
 name: Build and Deploy from Main
 on:
   push:
-    branches: [main]
+    branches: [master]
   workflow_dispatch:
     inputs:
       bosunEnvironment: # User Input Option - Will determine which bosun environment to build and deploy to.
