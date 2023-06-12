@@ -1,5 +1,5 @@
 name: Run containers within a step
-on: push 
+on: [pull_request] 
 jobs:
     docker-steps:
         runs-on: ubuntu-latest
