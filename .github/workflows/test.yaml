@@ -13,8 +13,9 @@ on:
           - 'dev'
           - 'stg'
           - 'prd'
-  jobs:
+jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # This checks out the required branch of your repo (master in this case)
       - uses: actions/checkout@v3
