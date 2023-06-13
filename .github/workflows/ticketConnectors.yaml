@@ -28,7 +28,7 @@ jobs:
           echo "${{ steps.abc.outputs.removed }}"
           echo "Modified:"
           echo "${{ steps.abc.outputs.modified }}"
-          cat ${{ steps.abc.outputs.removed }}
+          cat ${{ steps.abc.outputs.modified }}
 
       - name: Get Users
         run: "curl -X GET http://google.co.uk" 
