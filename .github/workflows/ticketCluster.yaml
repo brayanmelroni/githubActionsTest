@@ -3,6 +3,8 @@ on:
   push: # pull_request 
     branches:
     - master
+    paths-ignore: # Runs when we only change the files that matches the paths. 
+    - 'connectors/**'
   workflow_dispatch:
     inputs:
       bosunEnvironment: # User Input Option - Will determine which bosun environment to build and deploy to.
@@ -20,3 +22,11 @@ jobs:
     steps:
       # This checks out the required branch of your repo (master in this case)
       - uses: actions/checkout@v3
+
+
+
+
+
+
+
+
