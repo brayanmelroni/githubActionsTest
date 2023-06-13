@@ -1,7 +1,7 @@
 name: Build and Deploy from Main
 on:
   push:
-    branches: [master]
+    branches: master
     paths-ignore: # Runs when we only change the files that matches the paths. 
     - 'connectors/**'
   workflow_dispatch:
