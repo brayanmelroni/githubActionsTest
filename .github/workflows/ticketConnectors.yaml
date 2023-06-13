@@ -3,9 +3,6 @@ on:
   push:
     paths: # Runs when we only change the files that matches the paths. https://github.com/marketplace/actions/get-all-changed-files 
     - 'connectors/**'
-  pull_request:
-    paths: # Runs when we only change the files that matches the paths. https://github.com/marketplace/actions/get-all-changed-files 
-    - 'connectors/**'
   workflow_dispatch:
 jobs:
   build:
