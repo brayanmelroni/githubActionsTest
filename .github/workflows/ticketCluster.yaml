@@ -4,17 +4,6 @@ on:
     branches: [main]
     paths-ignore: # Runs when we only change the files that matches the paths. 
     - 'connectors/**'
-  workflow_dispatch:
-    inputs:
-      bosunEnvironment: # User Input Option - Will determine which bosun environment to build and deploy to.
-        description: 'Bosun Environment?'
-        required: false
-        default: 'dev'
-        type: choice
-        options:
-          - 'dev'
-          - 'stg'
-          - 'prd'
 jobs:
   build:
     runs-on: ubuntu-latest
