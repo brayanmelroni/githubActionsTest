@@ -14,7 +14,8 @@ jobs:
       - uses: jitterbit/get-changed-files@v1
         id: abc
         with:
-          token: ${{ secrets.GITHUB_TOKEN }} 
+          token: ${{ secrets.GITHUB_TOKEN }}
+          format: space-delimited 
       #- name: list changed files
         #run: git diff --name-only ${{ github.event.before }} ${{ github.event.after }} 
       - name: Printing
