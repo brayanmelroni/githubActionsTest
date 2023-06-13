@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+        #with:
+          #fetch-depth: 0
       - uses: jitterbit/get-changed-files@v1
         id: abc
         with:
@@ -25,11 +25,7 @@ jobs:
           echo "${{ steps.abc.outputs.added }}"
           echo "Removed:"
           echo "${{ steps.abc.outputs.removed }}"
-          echo "Renamed:"
-          echo "${{ steps.abc.outputs.renamed }}"
           echo "Modified:"
           echo "${{ steps.abc.outputs.modified }}"
-          echo "Added+Modified:"
-          echo "${{ steps.abc.outputs.added_modified }}"
    
     
