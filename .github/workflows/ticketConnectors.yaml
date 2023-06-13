@@ -12,5 +12,5 @@ jobs:
         with:
           fetch-depth: 0
       - name: list changed files
-        run: git diff --name-only ${{ github.event.before }} ${{ github.event.after }} 
+        run: git diff ${{ github.event.before }} ${{ github.event.after }} 
     
