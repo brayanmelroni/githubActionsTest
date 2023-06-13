@@ -15,8 +15,8 @@ jobs:
         id: abc
         with:
           token: ${{ secrets.GITHUB_TOKEN }} 
-      - name: list changed files
-        run: git diff --name-only ${{ github.event.before }} ${{ github.event.after }} 
+      #- name: list changed files
+        #run: git diff --name-only ${{ github.event.before }} ${{ github.event.after }} 
       - name: Printing
         run: |
           echo "All:"
