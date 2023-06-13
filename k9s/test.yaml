@@ -1,8 +1,8 @@
 apiVersion: v1
 data:
   mapRoles: 
-    - rolearn: arn:aws:iam::508208880112:role/sts-prd-js-encryption-role
-      username: sts
+    - rolearn:
+      username:
 kind: ConfigMap
 metadata:
   annotations:
