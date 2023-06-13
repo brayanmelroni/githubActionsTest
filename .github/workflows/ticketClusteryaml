@@ -4,6 +4,7 @@ on:
     branches: master
     #paths-ignore: # Runs when we only change the files that matches the paths. 
       #- 'connectors/**'
+  pull_request:    
   workflow_dispatch:
     branches: master 
     inputs:
