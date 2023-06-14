@@ -9,26 +9,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        #with:
-          #fetch-depth: 0
-      - uses: jitterbit/get-changed-files@v1
-        id: abc
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          format: space-delimited 
-      #- name: list changed files
-        #run: git diff --name-only ${{ github.event.before }} ${{ github.event.after }} 
-      - name: Printing
+          fetch-depth: 0
+      #- uses: jitterbit/get-changed-files@v1
+        #id: abc
+        #with:
+          #token: ${{ secrets.GITHUB_TOKEN }}
+          #format: space-delimited 
+      - name: list changed files
+        run: git diff --name-only ${{ github.event.before }} ${{ github.event.after }}
+      - name: Print Added Files from J
         run: |
-          echo "All:"
-          echo "${{ steps.abc.outputs.all }}"
-          echo "Added:"
-          echo "${{ steps.abc.outputs.added }}"
-          echo "Removed:"
-          echo "${{ steps.abc.outputs.removed }}"
-          echo "Modified:"
-          echo "${{ steps.abc.outputs.modified }}"
-          cat ${{ steps.abc.outputs.modified }}
+          echo "Files Added:"
+          git diff --name-only --diff-filter=A HEAD^ 
+      #- name: Printing
+        #run: |
+          #echo "All:"
+          #echo "${{ steps.abc.outputs.all }}"
+          #echo "Added:"
+          #echo "${{ steps.abc.outputs.added }}"
+          #echo "Removed:"
+          #echo "${{ steps.abc.outputs.removed }}"
+          #echo "Modified:"
+          #echo "${{ steps.abc.outputs.modified }}"
+          #cat ${{ steps.abc.outputs.modified }}
 
       - name: Get Users
         run: "curl -X GET http://google.co.uk" 
