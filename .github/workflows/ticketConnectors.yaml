@@ -60,7 +60,9 @@ jobs:
           done
       - name: List all renamed files 
         run: |
-          echo ${{ steps.changed-files.outputs.all_old_new_renamed_files }}
+          for file in ${{ steps.changed-files.outputs.all_old_new_renamed_files }}; do
+            echo "$file was renamed."
+          done
       - name: Get Users
         run: "curl -X GET http://google.co.uk" 
    
