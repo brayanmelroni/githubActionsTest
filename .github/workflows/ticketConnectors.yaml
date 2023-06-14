@@ -16,17 +16,17 @@ jobs:
         #with:
           #token: ${{ secrets.GITHUB_TOKEN }}
           #format: space-delimited 
-      - name: list changed files
-        run: git diff --name-only ${{ github.event.before }} ${{ github.event.after }}
-      - name: Print Added Files from J
-        run: |
-          echo "Files Added:"
-          echo "Added files:"
-          git diff --name-only --diff-filter=A HEAD^
-          echo "deleted files"
-          git diff --name-only --diff-filter=D HEAD^ 
-          echo "updated files"
-          git diff --name-only --diff-filter=M HEAD^
+      #- name: list changed files
+        #run: git diff --name-only ${{ github.event.before }} ${{ github.event.after }}
+      #- name: Print Added Files from J
+        #run: |
+          #echo "Files Added:"
+          # echo "Added files:"
+          # git diff --name-only --diff-filter=A HEAD^
+          # echo "deleted files"
+          # git diff --name-only --diff-filter=D HEAD^ 
+          # echo "updated files"
+          # git diff --name-only --diff-filter=M HEAD^
       #- name: Printing
         #run: |
           #echo "All:"
@@ -38,7 +38,24 @@ jobs:
           #echo "Modified:"
           #echo "${{ steps.abc.outputs.modified }}"
           #cat ${{ steps.abc.outputs.modified }}
-
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v36
+      - name: List all added files
+        run: |
+          for file in ${{ steps.changed-files.outputs.added_files }}; do
+            echo "$file was added"
+          done
+      - name: List all modified files
+        run: |
+          for file in ${{ steps.changed-files.outputs.modified_files }}; do
+            echo "$file was modified."
+          done
+      - name: List all deleted files
+        run: |
+          for file in ${{ steps.changed-files.outputs.deleted_files }}; do
+            echo "$file was deleted."
+          done
       - name: Get Users
         run: "curl -X GET http://google.co.uk" 
    
