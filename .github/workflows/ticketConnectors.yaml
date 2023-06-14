@@ -21,7 +21,12 @@ jobs:
       - name: Print Added Files from J
         run: |
           echo "Files Added:"
-          git diff --name-only --diff-filter=A HEAD^ 
+          echo "Added files:"
+          git diff --name-only --diff-filter=A HEAD^
+          echo "deleted files"
+          git diff --name-only --diff-filter=D HEAD^ 
+          echo "updated files"
+          git diff --name-only --diff-filter=M HEAD^
       #- name: Printing
         #run: |
           #echo "All:"
