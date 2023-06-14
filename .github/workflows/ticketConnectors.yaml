@@ -61,6 +61,7 @@ jobs:
       - name: List all renamed files 
         run: |
           for file in ${{ steps.changed-files.outputs.all_old_new_renamed_files }}; do
+            awk -F',' '{ for( i=1; i<=NF; i++ ) print $i }' <<<"$file"
             echo "$file was renamed."
           done
       - name: Get Users
