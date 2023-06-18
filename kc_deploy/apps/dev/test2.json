@@ -1,0 +1,7 @@
+{
+    "connector.class": "com.snowflake.kafka.connector.SnowflakeSinkConnector",
+    "tasks.max": "14",
+    "enhanced.avro.schema.support": "true",
+    "delivery.guarantee":"exactly_once",
+    "name":"T2"
+  }
