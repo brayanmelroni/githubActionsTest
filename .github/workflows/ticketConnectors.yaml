@@ -1,10 +1,12 @@
 name: Connector Deployment Workflow
 on:
-  push:
+  #push:
+    #paths:
+    #- 'connectors/**'
+  pull_request:
     paths:
     - 'connectors/**'
   workflow_dispatch:
-  pull_request:
 jobs:
   build:
     runs-on: ubuntu-latest
