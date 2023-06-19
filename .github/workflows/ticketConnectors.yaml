@@ -22,7 +22,7 @@ jobs:
         run: |
           for file in ${{ steps.changed-files.outputs.added_files }}; do
             echo "$file was added"
-            echo "$file | rev |  cut -d/ -f1 | rev | cut -d. -f1"
+            echo "$file" | rev |  cut -d/ -f1 | rev | cut -d. -f1
           done
       - name: List all modified files
         run: |
