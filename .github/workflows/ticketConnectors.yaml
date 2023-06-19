@@ -21,9 +21,11 @@ jobs:
       - name: Create connectors
         run: |
           for file in ${{ steps.changed-files.outputs.added_files }}; do
-            echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1
+            connector_name=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
             json_config=`cat $file`
+            echo "$connector_name"
             echo "$json_config"
+
           done
       - name: List all modified files
         run: |
