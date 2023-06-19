@@ -24,12 +24,17 @@ jobs:
             connector_name=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
             json_config=`cat $file`
           done
+          echo "${CONNECT_URL}"
+        with:
+          environment: dev
       - name: Delete connectors
         run: |
           for file in ${{ steps.changed-files.outputs.deleted_files }}; do
             connector_name=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
             echo "$connector_name"
           done
+        with:
+          environment: dev
       - name: List all modified files
         run: |
           for file in ${{ steps.changed-files.outputs.modified_files }}; do
