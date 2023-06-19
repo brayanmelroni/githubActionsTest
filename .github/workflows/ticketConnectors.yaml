@@ -23,19 +23,17 @@ jobs:
           for file in ${{ steps.changed-files.outputs.added_files }}; do
             connector_name=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
             json_config=`cat $file`
+          done
+      - name: Delete connectors
+        run: |
+          for file in ${{ steps.changed-files.outputs.deleted_files }}; do
+            connector_name=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
             echo "$connector_name"
-            echo "$json_config"
-
           done
       - name: List all modified files
         run: |
           for file in ${{ steps.changed-files.outputs.modified_files }}; do
             echo "$file was modified."
-          done
-      - name: List all deleted files
-        run: |
-          for file in ${{ steps.changed-files.outputs.deleted_files }}; do
-            echo "$file was deleted."
           done
       - name: List all renamed files 
         run: |
