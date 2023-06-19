@@ -22,8 +22,8 @@ jobs:
         run: |
           for file in ${{ steps.changed-files.outputs.added_files }}; do
             echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1
-            config=`cat $file`
-            echo "$config"
+            json_config=`cat $file`
+            echo "$json_config"
           done
       - name: List all modified files
         run: |
