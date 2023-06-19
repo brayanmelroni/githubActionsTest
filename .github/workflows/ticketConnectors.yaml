@@ -2,6 +2,8 @@ name: Connector Deployment Workflow
 env:
   environment: dev
   CONNECT_URL: https://sts-connect.int.dev-ie-01.jspaas.uk
+  USERNAME: test
+  PASSWORD: test
 on:
   push:
     paths:
@@ -27,7 +29,9 @@ jobs:
             connector_name=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
             json_config=`cat $file`
           done
-          echo "${CONNECT_URL}"
+          echo "$CONNECT_URL"
+          echo "$USERNAME"
+          echo "$PASSWORD"
       - name: Delete connectors
         run: |
           for file in ${{ steps.changed-files.outputs.deleted_files }}; do
