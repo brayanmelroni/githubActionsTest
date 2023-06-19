@@ -28,10 +28,8 @@ jobs:
           for file in ${{ steps.changed-files.outputs.added_files }}; do
             connector_name=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
             json_config=`cat $file`
+            curl -X GET http://google.co.uk
           done
-          echo "$CONNECT_URL"
-          echo "$USERNAME"
-          echo "$PASSWORD"
       - name: Delete connectors
         run: |
           for file in ${{ steps.changed-files.outputs.deleted_files }}; do
