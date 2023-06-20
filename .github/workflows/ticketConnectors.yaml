@@ -56,7 +56,8 @@ jobs:
             
             NEW_CONNECTOR_NAME=`echo ${array[1]} | rev |  cut -d/ -f1 | rev | cut -d. -f1`
             CREATE_URL=`echo ${CONNECT_URL}/connectors/${NEW_CONNECTOR_NAME}/config`
-            echo $CREATE_URL
+            curl -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $CREATE_URL -d `jq -c . < ${array[1]}`
+            
           done
 
       
