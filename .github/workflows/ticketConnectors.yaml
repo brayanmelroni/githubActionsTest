@@ -26,8 +26,8 @@ jobs:
       - name: Create / Update connectors
         run: |
           array = (${{ steps.changed-files.outputs.added_files[@] }} ${{ steps.changed-files.outputs.modified_files[@] }})
-          echo ${array[@]}
-       
+          echo $array
+          
           for file in ${{ steps.changed-files.outputs.added_files }}; do
             CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
             URL=`echo ${CONNECT_URL}/connectors/${CONNECTOR_NAME}/config`
