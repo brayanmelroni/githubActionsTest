@@ -26,11 +26,12 @@ jobs:
       - name: Create connectors
         run: |
           for file in ${{ steps.changed-files.outputs.added_files }}; do
-            CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
-            echo "$CONNECTOR_NAME"
-            json_config=`cat $file`
-            curl -X GET http://google.co.uk
-            
+            connector_name=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
+            echo "$connector_name"
+            #CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
+            #echo "$CONNECTOR_NAME"
+            #json_config=`cat $file`
+            #curl -X GET http://google.co.uk
           done
       - name: Delete connectors
         run: |
