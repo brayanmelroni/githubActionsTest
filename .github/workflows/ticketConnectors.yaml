@@ -25,8 +25,10 @@ jobs:
           include_all_old_new_renamed_files: true
       - name: Create / Update connectors
         run: |
-          c="${{ steps.changed-files.outputs.added_files }} ${{ steps.changed-files.outputs.modified_files }}"
-          echo $c
+          added_modified_files="${{ steps.changed-files.outputs.added_files }} ${{ steps.changed-files.outputs.modified_files }}"
+          for file in ${{ added_modified_files }}; do
+            echo $file
+          done
 
           for file in ${{ steps.changed-files.outputs.added_files }}; do
             CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
