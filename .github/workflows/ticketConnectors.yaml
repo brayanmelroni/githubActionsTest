@@ -36,8 +36,7 @@ jobs:
           for file in ${{ steps.changed-files.outputs.deleted_files }}; do
             CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
             URL=`echo ${CONNECT_URL}/connectors/${CONNECTOR_NAME}`
-            echo $URL
-            #curl -s -X DELETE "http://localhost:8083/connectors/sink-elastic-orders-00"
+            curl -s -X DELETE $URL
           done
       - name: List all modified files
         run: |
