@@ -2,7 +2,7 @@
     "connector.class": "org.apache.kafka.connect.file.FileStreamSourceConnector",
     "key.converter.schemas.enable": "true",
     "file": "/file-source-standalone-config/demo-file.txt",
-    "tasks.max": "35",
+    "tasks.max": "36",
     "value.converter.schemas.enable": "true",
     "topic": "file-stream-distributed",
     "value.converter": "org.apache.kafka.connect.json.JsonConverter",
