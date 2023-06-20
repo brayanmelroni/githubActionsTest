@@ -26,8 +26,8 @@ jobs:
       - name: Create connectors
         run: |
           for file in ${{ steps.changed-files.outputs.added_files }}; do
-            connector_name=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
-            echo "$connector_name"
+            CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
+            echo "$CONNECTOR_NAME"
             URL = "${CONNECT_URL}"+"/connectors/"+"${CONNECTOR_NAME}"+"/config"
             echo "${URL}"
             json_config=`cat $file`
