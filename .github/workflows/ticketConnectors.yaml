@@ -25,8 +25,8 @@ jobs:
           include_all_old_new_renamed_files: true
       - name: Create / Update connectors
         run: |
-          x = ${steps.changed-files.outputs.added_files}
-          y = ${steps.changed-files.outputs.modified_files}
+          x = ${{ steps.changed-files.outputs.added_files }}
+          y = ${{ steps.changed-files.outputs.modified_files }}
           arr3=("${x[@]}" "${y[@]}")
           echo $arr3
 
