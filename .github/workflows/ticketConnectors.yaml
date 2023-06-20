@@ -51,6 +51,8 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_old_new_renamed_files }}; do
             IFS=',' read -r -a array <<< "$file"
             OLD_CONNECTOR_NAME=`echo ${array[0]} | rev |  cut -d/ -f1 | rev | cut -d. -f1`
+            DELETE_URL=`echo ${CONNECT_URL}/connectors/${OLD_CONNECTOR_NAME}`
+            echo $DELETE_URL
             NEW_CONNECTOR_NAME=`echo ${array[1]} | rev |  cut -d/ -f1 | rev | cut -d. -f1`
             echo $OLD_CONNECTOR_NAME
             echo $NEW_CONNECTOR_NAME
