@@ -46,7 +46,7 @@ jobs:
             URL=`echo ${CONNECT_URL}/connectors/${CONNECTOR_NAME}`
             # curl -s -X DELETE $URL
           done
-      - name: List all renamed files 
+      - name: Delete old connector and Create new connector(file renamed)
         run: |
           for file in ${{ steps.changed-files.outputs.all_old_new_renamed_files }}; do
             echo "$file was renamed."
