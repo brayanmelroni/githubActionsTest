@@ -8,7 +8,6 @@ on:
   push:
     paths:
     - 'connectors/**'
-  #workflow_dispatch:
   pull_request:
     paths:
     - 'connectors/**'
@@ -28,10 +27,8 @@ jobs:
           for file in ${{ steps.changed-files.outputs.added_files }}; do
             CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
             URL=`echo ${CONNECT_URL}/connectors/${CONNECTOR_NAME}/config`
-            jq -c . < ${file}
-            #echo "$URL"
-            #json_config=`cat $file`
-            #curl -X GET http://google.co.uk
+            response=$(curl --write-out '%{http_code}' --silent --output /dev/null -u connect:connect -i -X PUT -H  "Content-Type:application/json" $URL -d `jq -c . < $file`)
+            echo "$response" 
           done
       - name: Delete connectors
         run: |
