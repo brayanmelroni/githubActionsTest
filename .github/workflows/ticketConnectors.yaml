@@ -55,7 +55,8 @@ jobs:
             # curl -s -X DELETE $DELETE_URL
             
             NEW_CONNECTOR_NAME=`echo ${array[1]} | rev |  cut -d/ -f1 | rev | cut -d. -f1`
-            echo $NEW_CONNECTOR_NAME
+            CREATE_URL=`echo ${CONNECT_URL}/connectors/${NEW_CONNECTOR_NAME}/config`
+            echo $CREATE_URL
           done
 
       
