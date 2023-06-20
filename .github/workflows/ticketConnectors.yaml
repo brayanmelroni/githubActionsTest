@@ -25,7 +25,7 @@ jobs:
           include_all_old_new_renamed_files: true
       - name: Create / Update connectors
         run: |
-          c="${steps.changed-files.outputs.added_files} ${steps.changed-files.outputs.modified_files}"
+          c="${{ steps.changed-files.outputs.added_files }} ${{ steps.changed-files.outputs.modified_files }}"
           echo $c
 
           for file in ${{ steps.changed-files.outputs.added_files }}; do
