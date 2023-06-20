@@ -7,4 +7,4 @@
     "topic": "file-stream-distributed",
     "value.converter": "org.apache.kafka.connect.json.JsonConverter",
     "key.converter": "org.apache.kafka.connect.json.JsonConverter"
-  }
+}
