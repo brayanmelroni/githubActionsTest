@@ -1,7 +1,7 @@
 name: Connector Deployment Workflow
 env:
   environment: dev
-  CONNECT_URL: https://sts-connect.int.dev-ie-01.jspaas.uk
+  CONNECT_URL: http://localhost:8083
   USERNAME: test
   PASSWORD: test
 on:
