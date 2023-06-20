@@ -52,14 +52,10 @@ jobs:
             IFS=',' read -r -a array <<< "$file"
             OLD_CONNECTOR_NAME=`echo ${array[0]} | rev |  cut -d/ -f1 | rev | cut -d. -f1`
             DELETE_URL=`echo ${CONNECT_URL}/connectors/${OLD_CONNECTOR_NAME}`
-            echo $DELETE_URL
-            NEW_CONNECTOR_NAME=`echo ${array[1]} | rev |  cut -d/ -f1 | rev | cut -d. -f1`
-            echo $OLD_CONNECTOR_NAME
-            echo $NEW_CONNECTOR_NAME
-            echo "$file was renamed."
+            # curl -s -X DELETE $DELETE_URL
             
-            echo "Old file : ${array[0]}"
-            echo "New file : ${array[1]}"
+            NEW_CONNECTOR_NAME=`echo ${array[1]} | rev |  cut -d/ -f1 | rev | cut -d. -f1`
+            echo $NEW_CONNECTOR_NAME
           done
 
       
