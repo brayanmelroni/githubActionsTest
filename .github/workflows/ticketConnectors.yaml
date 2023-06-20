@@ -53,12 +53,13 @@ jobs:
             IFS=',' read -r -a array <<< "$file"
             OLD_CONNECTOR_NAME=`echo ${array[0]} | rev |  cut -d/ -f1 | rev | cut -d. -f1`
             DELETE_URL=`echo ${BASE_URL}/connectors/${OLD_CONNECTOR_NAME}`
-            curl -s -X DELETE $DELETE_URL
+            echo $DELETE_URL
+            # curl -s -X DELETE $DELETE_URL
             
             NEW_CONNECTOR_NAME=`echo ${array[1]} | rev |  cut -d/ -f1 | rev | cut -d. -f1`
             CREATE_URL=`echo ${BASE_URL}/connectors/${NEW_CONNECTOR_NAME}/config`
             echo $CREATE_URL
-            curl -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $CREATE_URL -d `jq -c . < ${array[1]}`
+            #curl -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $CREATE_URL -d `jq -c . < ${array[1]}`
           done
    
     
