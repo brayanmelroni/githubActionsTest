@@ -28,6 +28,8 @@ jobs:
             CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
             URL=`echo ${CONNECT_URL}/connectors/${CONNECTOR_NAME}/config`
             curl -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $URL -d `jq -c . < $file`
+            response=$(curl --write-out '%{http_code}' --silent --output /dev/null -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $URL -d `jq -c . < $file`) 
+            echo "$response"
           done
       - name: Delete connectors
         run: |
