@@ -27,8 +27,8 @@ jobs:
         run: |
           x = ${{ steps.changed-files.outputs.added_files }}
           y = ${{ steps.changed-files.outputs.modified_files }}
-          arr3=("${x[@]}" "${y[@]}")
-          echo $arr3
+          c="${x} ${y}"
+          echo $c
 
           for file in ${{ steps.changed-files.outputs.added_files }}; do
             CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
