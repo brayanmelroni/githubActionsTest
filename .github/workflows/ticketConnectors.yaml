@@ -36,7 +36,7 @@ jobs:
           fetch-depth: 0
           lfs: true
       - name: Checkout LFS objects
-        run: git lfs checkout
+        run: git lfs pull
       - uses: tj-actions/changed-files@v36
         id: changed-files
         with:
