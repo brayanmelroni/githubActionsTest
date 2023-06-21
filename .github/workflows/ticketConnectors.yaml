@@ -27,6 +27,7 @@ jobs:
         run: |
           added_modified_files="${{ steps.changed-files.outputs.added_files }} ${{ steps.changed-files.outputs.modified_files }}"
           for file in $added_modified_files; do
+            echo $file 
             CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
             URL=`echo ${CONNECT_URL}/connectors/${CONNECTOR_NAME}/config`
             # curl -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $URL -d `jq -c . < $file`
