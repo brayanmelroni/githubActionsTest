@@ -18,7 +18,7 @@ jobs:
     services:
           app:
             image: landoop/fast-data-dev
-            environment:
+            env:
               ADV_HOST: 127.0.0.1         # Change to 192.168.99.100 if using Docker Toolbox
               RUNTESTS: 0                 # Disable Running tests so the cluster starts faster
               FORWARDLOGS: 0              # Disable running 5 file source connectors that bring application logs into Kafka topics
