@@ -37,6 +37,7 @@ jobs:
       - name: Delete connectors
         run: |
           for file in ${{ steps.changed-files.outputs.deleted_files }}; do
+            echo $file
             CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
             DELETE_URL=`echo ${BASE_URL}/connectors/${CONNECTOR_NAME}`
             # curl -s -X DELETE $DELETE_URL
