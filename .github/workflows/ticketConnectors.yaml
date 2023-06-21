@@ -1,4 +1,4 @@
-name: Connector Deployment Workflow
+name: ConnectorDeploymentWorkflow
 env:
   environment: dev
   CONNECT_URL: http://localhost:8083
@@ -15,6 +15,21 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    services:
+          app:
+            image: landoop/fast-data-dev
+            environment:
+              ADV_HOST: 127.0.0.1         # Change to 192.168.99.100 if using Docker Toolbox
+              RUNTESTS: 0                 # Disable Running tests so the cluster starts faster
+              FORWARDLOGS: 0              # Disable running 5 file source connectors that bring application logs into Kafka topics
+              SAMPLEDATA: 0  
+            ports:
+              - 3001:3000 # 3000 in the container is mapped to 3001 in local host
+              - 2181:2181                 # Zookeeper
+              - 3030:3030                 # Landoop UI
+              - 8081-8083:8081-8083       # REST Proxy, Schema Registry, Kafka Connect ports
+              - 9581-9585:9581-9585       # JMX Ports
+              - 9092:9092                 # Kafka Broker
     steps:
       - uses: actions/checkout@v3
         with:
@@ -44,7 +59,7 @@ jobs:
             then
               CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
               DELETE_URL=`echo ${BASE_URL}/connectors/${CONNECTOR_NAME}`
-              # echo $DELETE_URL
+              echo $DELETE_URL
               # curl -s -X DELETE $DELETE_URL
             fi
           done
