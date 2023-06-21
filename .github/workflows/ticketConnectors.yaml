@@ -15,6 +15,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: ubuntu
     services:
           app:
             image: landoop/fast-data-dev
