@@ -15,7 +15,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: ubuntu
     services:
           app:
             image: landoop/fast-data-dev
@@ -35,9 +34,6 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          lfs: true
-      - name: Checkout LFS objects
-        run: git pull lfs
       - uses: tj-actions/changed-files@v36
         id: changed-files
         with:
@@ -68,7 +64,7 @@ jobs:
               CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
               DELETE_URL=`echo ${BASE_URL}/connectors/${CONNECTOR_NAME}`
               echo $DELETE_URL
-              # curl -s -X DELETE $DELETE_URL
+              curl -s -X DELETE $DELETE_URL
             fi
           done
       - name: Delete old connector and Create new connector(file renamed)
