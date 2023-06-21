@@ -1,5 +1,5 @@
 {
     "connector.class": "org.apache.kafka.connect.file.FileStreamSourceConnector",
-    "tasks.max": "3",
+    "tasks.max": "2",
     "topic": "file-stream-distributed"
 }
