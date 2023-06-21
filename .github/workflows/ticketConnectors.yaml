@@ -34,22 +34,6 @@ jobs:
             # response=$(curl --write-out '%{http_code}' --silent --output /dev/null -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $URL -d `jq -c . < $file`)
             # echo $response 
           done
-
-          for file in ${{ steps.changed-files.outputs.added_files }}; do
-            CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
-            URL=`echo ${CONNECT_URL}/connectors/${CONNECTOR_NAME}/config`
-            # curl -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $URL -d `jq -c . < $file`
-            # response=$(curl --write-out '%{http_code}' --silent --output /dev/null -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $URL -d `jq -c . < $file`)
-            # echo $response 
-          done
-
-          for file in ${{ steps.changed-files.outputs.modified_files }}; do
-            CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
-            URL=`echo ${CONNECT_URL}/connectors/${CONNECTOR_NAME}/config`
-            # curl -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $URL -d `jq -c . < $file`
-            # response=$(curl --write-out '%{http_code}' --silent --output /dev/null -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $URL -d `jq -c . < $file`)
-            # echo $response 
-          done
       - name: Delete connectors
         run: |
           for file in ${{ steps.changed-files.outputs.deleted_files }}; do
