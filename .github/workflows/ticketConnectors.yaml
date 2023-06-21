@@ -1,8 +1,8 @@
 name: ConnectorDeploymentWorkflow
 env:
   environment: dev
-  CONNECT_URL: http://127.0.0.1:8083
-  BASE_URL: http://127.0.0.1:8083
+  CONNECT_URL: http://localhost:8083
+  BASE_URL: http://localhost:8083
   USERNAME: test
   PASSWORD: test
 on:
@@ -15,6 +15,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: ubuntu
     services:
           app:
             image: landoop/fast-data-dev
@@ -36,7 +37,7 @@ jobs:
           fetch-depth: 0
           lfs: true
       - name: Checkout LFS objects
-        run: git lfs pull
+        run: git pull lfs
       - uses: tj-actions/changed-files@v36
         id: changed-files
         with:
@@ -50,9 +51,13 @@ jobs:
               CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
               URL=`echo ${CONNECT_URL}/connectors/${CONNECTOR_NAME}/config`
               echo $URL
-              curl -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $URL -d `jq -c . < $file`
-              response=$(curl --write-out '%{http_code}' --silent --output /dev/null -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $URL -d `jq -c . < $file`)
-              echo $response   
+              # curl -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $URL -d `jq -c . < $file`
+              response=0
+              while [$response --gt 0]
+              do
+                response=$(curl --write-out '%{http_code}' --silent --output /dev/null -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $URL -d `jq -c . < $file`)
+                echo $response 
+              done    
             fi
           done
       - name: Delete connectors
