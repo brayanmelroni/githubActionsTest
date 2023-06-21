@@ -44,21 +44,26 @@ jobs:
             then
               CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
               DELETE_URL=`echo ${BASE_URL}/connectors/${CONNECTOR_NAME}`
-              echo $DELETE_URL
+              # echo $DELETE_URL
               # curl -s -X DELETE $DELETE_URL
             fi
           done
       - name: Delete old connector and Create new connector(file renamed)
         run: |
           for file in ${{ steps.changed-files.outputs.all_old_new_renamed_files }}; do
-            IFS=',' read -r -a array <<< "$file"
-            OLD_CONNECTOR_NAME=`echo ${array[0]} | rev |  cut -d/ -f1 | rev | cut -d. -f1`
-            DELETE_URL=`echo ${BASE_URL}/connectors/${OLD_CONNECTOR_NAME}`
-            # curl -s -X DELETE $DELETE_URL
-            
-            NEW_CONNECTOR_NAME=`echo ${array[1]} | rev |  cut -d/ -f1 | rev | cut -d. -f1`
-            CREATE_URL=`echo ${BASE_URL}/connectors/${NEW_CONNECTOR_NAME}/config`
-            # curl -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $CREATE_URL -d `jq -c . < ${array[1]}`
+            if  [[ $file == connectors* ]] && [[ $file == *.json ]] ;
+            then
+              IFS=',' read -r -a array <<< "$file"
+              OLD_CONNECTOR_NAME=`echo ${array[0]} | rev |  cut -d/ -f1 | rev | cut -d. -f1`
+              DELETE_URL=`echo ${BASE_URL}/connectors/${OLD_CONNECTOR_NAME}`
+              echo $DELETE_URL
+              # curl -s -X DELETE $DELETE_URL
+              
+              NEW_CONNECTOR_NAME=`echo ${array[1]} | rev |  cut -d/ -f1 | rev | cut -d. -f1`
+              CREATE_URL=`echo ${BASE_URL}/connectors/${NEW_CONNECTOR_NAME}/config`
+              echo $CREATE_URL
+              # curl -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $CREATE_URL -d `jq -c . < ${array[1]}`
+            fi
           done
    
     
