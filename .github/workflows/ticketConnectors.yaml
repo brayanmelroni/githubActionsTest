@@ -2,7 +2,7 @@ name: ConnectorDeploymentWorkflow
 env:
   environment: dev
   CONNECT_URL: http://localhost:8083
-  BASE_URL: app:8083
+  BASE_URL: http://localhost:8083
   USERNAME: test
   PASSWORD: test
 on:
@@ -31,6 +31,9 @@ jobs:
               - 9581-9585:9581-9585       # JMX Ports
               - 9092:9092                 # Kafka Broker
     steps:
+      - name: sleep
+        run: |
+          sleep 300
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -48,12 +51,8 @@ jobs:
               URL=`echo ${CONNECT_URL}/connectors/${CONNECTOR_NAME}/config`
               echo $URL
               # curl -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $URL -d `jq -c . < $file`
-              response=0
-              while [$response --gt 0]
-              do
-                response=$(curl --write-out '%{http_code}' --silent --output /dev/null -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $URL -d `jq -c . < $file`)
-                echo $response 
-              done    
+              response=$(curl --write-out '%{http_code}' --silent --output /dev/null -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $URL -d `jq -c . < $file`)
+              echo $response 
             fi
           done
       - name: Delete connectors
