@@ -33,7 +33,7 @@ jobs:
     steps:
       - name: sleep
         run: |
-          sleep 80
+          sleep 70
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -44,7 +44,7 @@ jobs:
       - name: Test case for updating connectors
         run: |
           curl -X PUT \
-          ${BASE_URL}/connectors/dash2/config \
+          ${BASE_URL}/connectors/dash99/config \
           -H 'Content-Type: application/json' \
           -H 'Accept: application/json' \
           -d '{
