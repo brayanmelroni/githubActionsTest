@@ -19,7 +19,7 @@ jobs:
           app:
             image: landoop/fast-data-dev
             env:
-              ADV_HOST: 127.0.0.1         # Change to 192.168.99.100 if using Docker Toolbox
+              ADV_HOST: 127.0.0.1         
               RUNTESTS: 0                 # Disable Running tests so the cluster starts faster
               FORWARDLOGS: 0              # Disable running 5 file source connectors that bring application logs into Kafka topics
               SAMPLEDATA: 0  
@@ -33,7 +33,7 @@ jobs:
     steps:
       - name: sleep
         run: |
-          sleep 240
+          sleep 180
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -48,11 +48,17 @@ jobs:
             if  [[ $file == connectors* ]] && [[ $file == *.json ]] ;
             then
               CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
-              URL=`echo ${CONNECT_URL}/connectors/${CONNECTOR_NAME}/config`
-              echo $URL
-              # curl -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $URL -d `jq -c . < $file`
+              URL=`echo ${BASE_URL}/connectors/${CONNECTOR_NAME}/config`
               response=$(curl --write-out '%{http_code}' --silent --output /dev/null -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $URL -d `jq -c . < $file`)
               echo $response 
+              if [ $response == 201 ]
+              then
+                echo "Created: $CONNECTOR_NAME"
+              fi
+              if [ $response == 200 ]
+              then
+                echo "Updated: $CONNECTOR_NAME"
+              fi
             fi
           done
       - name: Delete connectors
