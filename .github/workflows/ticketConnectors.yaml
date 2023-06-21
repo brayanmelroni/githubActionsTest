@@ -29,7 +29,6 @@ jobs:
           for file in $added_modified_files; do
             CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
             URL=`echo ${CONNECT_URL}/connectors/${CONNECTOR_NAME}/config`
-            echo $URL
             # curl -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $URL -d `jq -c . < $file`
             # response=$(curl --write-out '%{http_code}' --silent --output /dev/null -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $URL -d `jq -c . < $file`)
             # echo $response 
