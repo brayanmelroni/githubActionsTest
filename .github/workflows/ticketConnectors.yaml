@@ -1,7 +1,5 @@
 name: ConnectorDeploymentWorkflow
 env:
-  environment: dev
-  CONNECT_URL: http://localhost:8083
   BASE_URL: http://localhost:8083
   USERNAME: test
   PASSWORD: test
@@ -15,6 +13,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: dev
     services:
           app:
             image: landoop/fast-data-dev
@@ -31,6 +30,10 @@ jobs:
               - 9581-9585:9581-9585       # JMX Ports
               - 9092:9092                 # Kafka Broker
     steps:
+      - name: environment test
+        run: |
+          echo "${{ env.BASE_URL }}"
+          echo "${{ env.CONNECT_REST_BASIC_AUTH_USER }}"
       - name: sleep
         run: |
           sleep 60
