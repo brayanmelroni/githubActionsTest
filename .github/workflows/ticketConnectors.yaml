@@ -65,7 +65,7 @@ jobs:
             then
               CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
               URL=`echo ${BASE_URL}/connectors/${CONNECTOR_NAME}/config`
-              response=$(curl --write-out '%{http_code}' --silent --output /dev/null -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $URL -d `jq -c . < $file`)
+              response=$(curl --write-out '%{http_code}' -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $URL -d `jq -c . < $file`)
               echo $response 
               if [ $response == 201 ]
               then
