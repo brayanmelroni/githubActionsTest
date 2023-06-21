@@ -33,7 +33,7 @@ jobs:
     steps:
       - name: sleep
         run: |
-          sleep 180
+          sleep 120
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -41,6 +41,22 @@ jobs:
         id: changed-files
         with:
           include_all_old_new_renamed_files: true
+      - name: Test case for updating connectors
+        run: |
+          curl -X PUT \
+          ${BASE_URL}/connectors/dash/config \
+          -H 'Content-Type: application/json' \
+          -H 'Accept: application/json' \
+          -d '{
+          "connector.class": "org.apache.kafka.connect.file.FileStreamSourceConnector",
+          "key.converter.schemas.enable": "true",
+          "file": "/file-source-standalone-config/demo-file.txt",
+          "tasks.max": "2",
+          "value.converter.schemas.enable": "true",
+          "topic": "file-stream-distributed",
+          "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+          "key.converter": "org.apache.kafka.connect.json.JsonConverter"
+          }'
       - name: Create / Update connectors
         run: |
           added_modified_files="${{ steps.changed-files.outputs.added_files }} ${{ steps.changed-files.outputs.modified_files }}"
