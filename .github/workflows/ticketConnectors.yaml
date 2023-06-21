@@ -44,7 +44,7 @@ jobs:
       - name: Create a test case
         run: |
           curl -X PUT \
-          ${BASE_URL}/connectors/dash2/config \
+          ${BASE_URL}/connectors/dash500/config \
           -H 'Content-Type: application/json' \
           -H 'Accept: application/json' \
           -d '{
@@ -108,6 +108,7 @@ jobs:
               fi
   
               NEW_CONNECTOR_NAME=`echo ${array[1]} | rev |  cut -d/ -f1 | rev | cut -d. -f1`
+              echo $NEW_CONNECTOR_NAME
               CREATE_URL=`echo ${BASE_URL}/connectors/${NEW_CONNECTOR_NAME}/config`
               response=$(curl --write-out '%{http_code}' --silent --output /dev/null -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $CREATE_URL -d `jq -c . < $file`)
               echo $response 
