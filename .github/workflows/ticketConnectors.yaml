@@ -44,7 +44,7 @@ jobs:
       - name: Create a test case
         run: |
           curl -X PUT \
-          ${BASE_URL}/connectors/dash500/config \
+          ${BASE_URL}/connectors/ama/config \
           -H 'Content-Type: application/json' \
           -H 'Accept: application/json' \
           -d '{
@@ -95,9 +95,9 @@ jobs:
       - name: Delete old connector and Create new connector(file renamed)
         run: |
           for file in ${{ steps.changed-files.outputs.all_old_new_renamed_files }}; do
-            if  [[ $file == connectors* ]] && [[ $file == *.json ]] ;
+            IFS=',' read -r -a array <<< "$file" 
+            if  [[ ${array[0]}  == connectors* ]] && [[ ${array[0]}  == *.json ]] ;
             then
-              IFS=',' read -r -a array <<< "$file"
               OLD_CONNECTOR_NAME=`echo ${array[0]} | rev |  cut -d/ -f1 | rev | cut -d. -f1`
               DELETE_URL=`echo ${BASE_URL}/connectors/${OLD_CONNECTOR_NAME}`
               response=$(curl --write-out '%{http_code}' --silent --output /dev/null -u $USERNAME:$PASSWORD -s -X DELETE $DELETE_URL)
@@ -106,11 +106,12 @@ jobs:
               then
                 echo "Deleted: $OLD_CONNECTOR_NAME"
               fi
-  
+            fi
+
+            if  [[ ${array[1]}  == connectors* ]] && [[ ${array[1]}  == *.json ]] ;
               NEW_CONNECTOR_NAME=`echo ${array[1]} | rev |  cut -d/ -f1 | rev | cut -d. -f1`
-              echo $NEW_CONNECTOR_NAME
               CREATE_URL=`echo ${BASE_URL}/connectors/${NEW_CONNECTOR_NAME}/config`
-              response=$(curl --write-out '%{http_code}' --silent --output /dev/null -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $CREATE_URL -d `jq -c . < $file`)
+              response=$(curl --write-out '%{http_code}' --silent --output /dev/null -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $CREATE_URL -d `jq -c . < ${array[1]}`)
               echo $response 
               if [ $response == 201 ]
               then
