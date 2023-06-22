@@ -32,7 +32,8 @@ jobs:
     steps:
       - name: environment test
         run: |
-          echo "${{ vars.BASE_URL }} ${{ vars.CONNECT_REST_BASIC_AUTH_USER}} ${{ secrets.CONNECT_REST_BASIC_AUTH_PASSWORD }}"
+          echo "${{ vars.BASE_URL }} ${{ vars.CONNECT_REST_BASIC_AUTH_USER}}"
+          echo "${{ secrets.CONNECT_REST_BASIC_AUTH_PASSWORD }}"
       - name: sleep
         run: |
           sleep 60
