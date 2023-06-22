@@ -33,6 +33,8 @@ jobs:
       - name: environment test
         run: |
           echo "${{ secrets.CONNECT_REST_BASIC_AUTH_PASSWORD }}"
+          echo "${{ env.BASE_URL }}"
+          echo "${{ env.CONNECT_REST_BASIC_AUTH_USER }}"
       - name: sleep
         run: |
           sleep 60
