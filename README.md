@@ -121,5 +121,10 @@ Status check functions: https://docs.github.com/en/actions/learn-github-actions/
 if [ failure() , always() ] functions
 
 ---------------------------------------------------------------------------------------------------------------------------------------
-Accessing environment secrets/ variables: 
+Accessing environment secrets/ variables at Environment level: 
 https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#using-an-environment
+
+https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#environment-variables
+
+https://docs.github.com/en/actions/learn-github-actions/contexts#vars-context
+
