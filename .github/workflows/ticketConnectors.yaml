@@ -48,7 +48,7 @@ jobs:
       - name: Create a test case
         run: |
           curl -X PUT \
-          ${BASE_URL}/connectors/amaBasnayake/config \
+          ${BASE_URL}/connectors/test/config \
           -H 'Content-Type: application/json' \
           -H 'Accept: application/json' \
           -d '{
@@ -64,10 +64,18 @@ jobs:
       - name: Create / Update connectors
         run: |
           added_modified_files="${{ steps.changed-files.outputs.added_files }} ${{ steps.changed-files.outputs.modified_files }}"
-          for file in $added_modified_files; do
-            if  [[ $file == connectors* ]] && [[ $file == *.json ]] ;
+          delimiter='connectors/'
+          s=$added_modified_files$delimiter
+          files=();
+          while [[ $s ]]; do
+              files+=( "${s%%"$delimiter"*}" );
+              s=${s#*"$delimiter"};
+          done;
+          files=("${files[@]:1}")
+          for file in "${files[@]}"; do
+            if  [[ $file == *.json ]] ;
             then
-              CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
+              CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | xargs | sed 's/.....$//'`
               URL=`echo ${BASE_URL}/connectors/${CONNECTOR_NAME}/config`
               response=$(curl --write-out '%{http_code}' --silent --output /dev/null -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $URL -d `jq -c . < $file`)
               echo $response 
@@ -85,14 +93,13 @@ jobs:
         run: |
           delimiter='connectors/'
           s=${{ steps.changed-files.outputs.deleted_files }}$delimiter
-          array=();
+          files=();
           while [[ $s ]]; do
-              array+=( "${s%%"$delimiter"*}" );
+              files+=( "${s%%"$delimiter"*}" );
               s=${s#*"$delimiter"};
           done;
-          array=("${array[@]:1}")
-          for file in "${array[@]}"; do
-            echo $file
+          files=("${files[@]:1}")
+          for file in "${files[@]}"; do
             if  [[ $file == *.json ]] ;
             then
               CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | xargs | sed 's/.....$//'` 
