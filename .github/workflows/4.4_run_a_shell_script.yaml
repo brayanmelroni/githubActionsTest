@@ -1,5 +1,5 @@
 name: Run a shell script
-on: [pull_request] 
+on: [push] 
 jobs:
     shell-script-on-docker:
         runs-on: ubuntu-latest
@@ -10,3 +10,5 @@ jobs:
             with:
               entrypoint: ./script.sh  # chmod +x script.sh
               args: "arg1 arg2"
+          - name: Run a script
+            run:  bash ${GITHUB_WORKSPACE}/scripts.sh
