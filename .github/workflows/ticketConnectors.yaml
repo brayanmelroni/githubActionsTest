@@ -48,7 +48,7 @@ jobs:
       - name: Create a test case
         run: |
           curl -X PUT \
-          ${BASE_URL}/connectors/gangsterenter/config \
+          ${BASE_URL}/connectors/ada/config \
           -H 'Content-Type: application/json' \
           -H 'Accept: application/json' \
           -d '{
@@ -64,21 +64,11 @@ jobs:
       - name: Create / Update connectors
         run: |
           added_modified_files="${{ steps.changed-files.outputs.added_files }} ${{ steps.changed-files.outputs.modified_files }}"
-          delimiter='connectors/'
-          s=$added_modified_files$delimiter
-          files=();
-          while [[ $s ]]; do
-              files+=( "${s%%"$delimiter"*}" );
-              s=${s#*"$delimiter"};
-          done;
-          files=("${files[@]:1}")
-          for file in "${files[@]}"; do
-            if  [[ $file == *.json ]] ;
+          for file in $added_modified_files; do
+            if  [[ $file == connectors* ]] && [[ $file == *.json ]] ;
             then
-              CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | xargs | sed 's/.....$//'`
-              CONNECTOR_NAME="${CONNECTOR_NAME// /%20}"
+              CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
               URL=`echo ${BASE_URL}/connectors/${CONNECTOR_NAME}/config`
-              echo $URL
               response=$(curl --write-out '%{http_code}' --silent --output /dev/null -u $USERNAME:$PASSWORD -i -X PUT -H  "Content-Type:application/json" $URL -d `jq -c . < $file`)
               echo $response 
               if [ $response == 201 ]
@@ -93,18 +83,10 @@ jobs:
           done
       - name: Delete connectors
         run: |
-          delimiter='connectors/'
-          s=${{ steps.changed-files.outputs.deleted_files }}$delimiter
-          files=();
-          while [[ $s ]]; do
-              files+=( "${s%%"$delimiter"*}" );
-              s=${s#*"$delimiter"};
-          done;
-          files=("${files[@]:1}")
-          for file in "${files[@]}"; do
-            if  [[ $file == *.json ]] ;
+          for file in ${{ steps.changed-files.outputs.deleted_files }}; do
+            if  [[ $file == connectors* ]] && [[ $file == *.json ]] ;
             then
-              CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | xargs | sed 's/.....$//'` 
+              CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
               DELETE_URL=`echo ${BASE_URL}/connectors/${CONNECTOR_NAME}`
               response=$(curl --write-out '%{http_code}' --silent --output /dev/null -u ${{ vars.CONNECT_REST_BASIC_AUTH_USER }}:${{ secrets.CONNECT_REST_BASIC_AUTH_PASSWORD }} -s -X DELETE $DELETE_URL)
               echo $response
@@ -139,5 +121,3 @@ jobs:
               fi  
             fi
           done
-   
-    
