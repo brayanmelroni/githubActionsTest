@@ -48,7 +48,7 @@ jobs:
       - name: Create a test case
         run: |
           curl -X PUT \
-          ${BASE_URL}/connectors/gangster 45/config \
+          ${BASE_URL}/connectors/gangster%20enter/config \
           -H 'Content-Type: application/json' \
           -H 'Accept: application/json' \
           -d '{
