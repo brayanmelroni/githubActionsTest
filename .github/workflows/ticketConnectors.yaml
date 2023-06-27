@@ -48,7 +48,7 @@ jobs:
       - name: Create a test case
         run: |
           curl -X PUT \
-          ${BASE_URL}/connectors/sed/config \
+          ${BASE_URL}/connectors/fat/config \
           -H 'Content-Type: application/json' \
           -H 'Accept: application/json' \
           -d '{
