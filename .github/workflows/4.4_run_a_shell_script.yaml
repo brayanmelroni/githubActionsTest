@@ -11,4 +11,4 @@ jobs:
               entrypoint: ./script.sh  # chmod +x script.sh
               args: "arg1 arg2"
           - name: Run a script
-            run:  bash ${GITHUB_WORKSPACE}/scripts.sh
+            run: sh ./script.sh 23 34
