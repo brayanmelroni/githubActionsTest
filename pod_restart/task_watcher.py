@@ -56,10 +56,9 @@ if __name__=='__main__':
     args = parser.parse_args()
     username = args.username
     password = args.password
-    print(username, password)
 
     kafka_connect_url = f"http://localhost:8083"
-    await_duration=5
+    await_duration=5*60
     while True:
         try:
             logger.info("Managing tasks...")

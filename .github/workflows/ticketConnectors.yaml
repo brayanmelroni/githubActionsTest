@@ -48,7 +48,7 @@ jobs:
       - name: Create a test case
         run: |
           curl -X PUT \
-          ${BASE_URL}/connectors/dash5500/config \
+          ${BASE_URL}/connectors/amaBasnayake/config \
           -H 'Content-Type: application/json' \
           -H 'Accept: application/json' \
           -d '{
@@ -83,10 +83,19 @@ jobs:
           done
       - name: Delete connectors
         run: |
-          for file in ${{ steps.changed-files.outputs.deleted_files }}; do
-            if  [[ $file == connectors* ]] && [[ $file == *.json ]] ;
+          delimiter='connectors/'
+          s=${{ steps.changed-files.outputs.deleted_files }}$delimiter
+          array=();
+          while [[ $s ]]; do
+              array+=( "${s%%"$delimiter"*}" );
+              s=${s#*"$delimiter"};
+          done;
+          array=("${array[@]:1}")
+          for file in "${array[@]}"; do
+            echo $file
+            if  [[ $file == *.json ]] ;
             then
-              CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
+              CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | xargs | sed 's/.....$//'` 
               DELETE_URL=`echo ${BASE_URL}/connectors/${CONNECTOR_NAME}`
               response=$(curl --write-out '%{http_code}' --silent --output /dev/null -u ${{ vars.CONNECT_REST_BASIC_AUTH_USER }}:${{ secrets.CONNECT_REST_BASIC_AUTH_PASSWORD }} -s -X DELETE $DELETE_URL)
               echo $response
