@@ -5,7 +5,7 @@ create_update_connector () {
 
 test(){
     echo "$1 $2"
-    if [$1 == 3]
+    if [ $1 == 3 ]
     then
         echo "t"
     else
