@@ -5,6 +5,7 @@ create_update_connector () {
 
 test(){
     echo "$1 $2"
+    exit 1
 }
 
 delete_connector () {
