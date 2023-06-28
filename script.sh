@@ -19,7 +19,6 @@ validate_files(){
         echo "$file_pair"
         echo "--- next set --"
     done
-    exit 1
 }
 
 
