@@ -3,9 +3,8 @@
 validate_files(){
     renamed_file_pairs=$1
     for file_pair in $renamed_file_pairs; do
-        IFS=',' read -r -a array <<< "$file_pair" 
-        echo "0 th element ${array[0]} "
-        echo "1 th element ${array[1]} "
+        echo "$file_pair"
+        echo "--- next set --"
     done
     exit 1
 }
@@ -14,6 +13,12 @@ validate_files(){
 
 
 create_update_connector () {
+
+    IFS=',' read -r -a array <<< "$file_pair" 
+        echo "0 th element ${array[0]} "
+        echo "1 th element ${array[1]} "
+
+
           for file in ${{ steps.changed-files.outputs.all_old_new_renamed_files }}; do
             IFS=',' read -r -a array <<< "$file" 
             if  [[ ${array[0]}  == connectors* ]] && [[ ${array[0]}  == *.json ]] && [[ ${array[1]}  == connectors* ]] && [[ ${array[1]}  == *.json ]];
