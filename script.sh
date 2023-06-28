@@ -16,6 +16,7 @@ delete_connector () {
         echo "Deleted: $CONNECTOR_NAME"
     else
         echo "$(cat response.txt)"
+        exit 1
     fi          
 } 
           
