@@ -4,6 +4,13 @@ create_update_connector () {
 } 
 
 delete_connector () {
-    echo 'tets'
+    file=$1
+    BASE_URL=$2
+    CONNECT_REST_BASIC_AUTH_USER=$3
+    CONNECT_REST_BASIC_AUTH_PASSWORD=$4
+    echo '$file $BASE_URL $CONNECT_REST_BASIC_AUTH_USER $CONNECT_REST_BASIC_AUTH_PASSWORD'
 } 
 
+
+
+          
