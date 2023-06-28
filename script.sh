@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 create_update_connector () {
    echo "create update function $1 $2 "
 } 
