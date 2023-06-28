@@ -1,12 +1,28 @@
 #!/bin/bash
 
 validate_files(){
-    echo " new files: $1"
-    echo " renamed file pair: $2"
+    renamed_file_pairs=$1
+    for file_pair in $renamed_file_pairs; do
+        echo $file_pair
+    done
     exit 1
 }
 
 create_update_connector () {
+for file_pair in $renamed_file_pairs; do
+    IFS=',' read -r -a array <<< "$file_pair"
+    new_file_name=${array[1]}
+    echo $new_file_name
+    for word in $new_file_name; do
+        if  [[ $word != connectors* ]] || [[ $word != *.json ]] ;
+        then
+          echo "ERROR: new file name: $new_file_name ... should not contain space(s)"
+          exit 1
+        fi
+    done
+  done
+
+
    echo "create update function $1 $2 "
 } 
 
