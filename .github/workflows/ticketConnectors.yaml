@@ -48,7 +48,7 @@ jobs:
       - name: Create a test case
         run: |
           curl -X PUT \
-          ${BASE_URL}/connectors/bada/config \
+          ${BASE_URL}/connectors/anton/config \
           -H 'Content-Type: application/json' \
           -H 'Accept: application/json' \
           -d '{
@@ -88,7 +88,8 @@ jobs:
             then
               USERNAME=${{ vars.CONNECT_REST_BASIC_AUTH_USER }}
               PASSWORD=${{ secrets.CONNECT_REST_BASIC_AUTH_PASSWORD }}
-              bash -c "source ./script.sh; delete_connector $file $BASE_URL $USERNAME $PASSWORD"
+              echo $(bash -c "source ./script.sh; delete_connector $file $BASE_URL $USERNAME $PASSWORD")
+
               # CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
               # DELETE_URL=`echo ${BASE_URL}/connectors/${CONNECTOR_NAME}`
               # response=$(curl --write-out '%{http_code}' --silent --output response.txt -u ${{ vars.CONNECT_REST_BASIC_AUTH_USER }}:${{ secrets.CONNECT_REST_BASIC_AUTH_PASSWORD }} -s -X DELETE $DELETE_URL)
