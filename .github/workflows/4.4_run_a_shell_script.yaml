@@ -8,10 +8,10 @@ jobs:
           - name: Run a script as a whole 
             run: sh ./script.sh 23 34
           - name: Run a specific function from a shell script
-            run: bash -c "source ./script.sh; delete_connector one two three four"    
+            run: . script.sh; delete_connector one two three four    
           - name: Run a script from a docker image
             uses: docker://node:12.14.1-alpine3.10 
             with:
-              entrypoint: ./script.sh  # chmod +x script.sh
+              entrypoint: ./script.sh  # chmod +x script.sh bash -c "source ./script.sh; delete_connector one two three four" 
               args: "arg1 arg2"
           
