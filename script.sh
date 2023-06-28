@@ -6,10 +6,11 @@ create_update_connector () {
 delete_connector () {
     echo "delete connector function $1"
     file=$1
+    echo "$file"
     BASE_URL=$2
     CONNECT_REST_BASIC_AUTH_USER=$3
     CONNECT_REST_BASIC_AUTH_PASSWORD=$4
-    echo '$1 $2 $3 $4'
+   
 } 
 
 
