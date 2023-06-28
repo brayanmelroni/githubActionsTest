@@ -3,6 +3,10 @@ create_update_connector () {
    echo "create update function $1 $2 "
 } 
 
+test(){
+    echo "$1 $2"
+}
+
 delete_connector () {
     file=$1
     BASE_URL=$2

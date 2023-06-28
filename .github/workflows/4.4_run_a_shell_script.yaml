@@ -8,7 +8,7 @@ jobs:
           - name: Run a script as a whole 
             run: sh ./script.sh 23 34
           - name: Run a specific function from a shell script
-            run: . script.sh; delete_connector one two three four    
+            run: . script.sh; test one two
           - name: Run a script from a docker image
             uses: docker://node:12.14.1-alpine3.10 
             with:
