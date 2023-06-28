@@ -1,4 +1,10 @@
 #!/bin/bash
+
+validate_files(){
+    echo "$1 $2"
+    exit 1
+}
+
 create_update_connector () {
    echo "create update function $1 $2 "
 } 
