@@ -6,7 +6,7 @@ jobs:
         steps:
           - uses: actions/checkout@v1
           - name: Run a script
-            run: sh ./script.sh; create_update_connector 23 24
+            run: sh ./script.sh; delete_connector
           - name: Run a script from a docker image
             uses: docker://node:12.14.1-alpine3.10 
             with:
