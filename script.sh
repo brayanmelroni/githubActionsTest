@@ -1,27 +1,27 @@
 #!/bin/bash
 
-validate_new_files(){
-  created_files=$1
-  for file in $created_files; do
-    echo $file
-    if [[ $file != *.json ]] ;
-    then
-      if [[ $file == connectors* ]] ||;
-      then
-        echo "ERROR: new file name: $file ... should not contain space(s)"
-        exit 1
-      fi
-    fi
-  done
-}
-
 validate_files(){
     renamed_file_pairs=$1
     for file_pair in $renamed_file_pairs; do
         echo "$file_pair"
         echo "--- next set --"
     done
+    exit 1
 }
+
+
+validate_new_files(){
+  created_files=$1
+  for file in $created_files; do
+    echo $file
+    if  [[ $file == connectors* ]] && [[ $file != *.json ]] ;
+    then
+      echo "ERROR: new file name: $file ... should not contain space(s)"
+      exit 1
+    fi
+  done
+}
+
 
 
 create_update_connector () {
