@@ -1,6 +1,6 @@
 #!/bin/sh
 create_update_connector () {
-   echo "test $1 $2 "
+   echo "create update function $1 $2 "
 } 
 
 delete_connector () {
