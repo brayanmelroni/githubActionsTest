@@ -52,7 +52,7 @@ jobs:
       - name: Create a test case
         run: |
           curl -X PUT \
-          ${BASE_URL}/connectors/m3/config \
+          ${BASE_URL}/connectors/test/config \
           -H 'Content-Type: application/json' \
           -H 'Accept: application/json' \
           -d '{
