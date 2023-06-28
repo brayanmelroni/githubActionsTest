@@ -10,6 +10,18 @@ validate_files(){
 }
 
 
+validate_new_files(){
+  created_files=$1
+  for file in $created_files; do
+    echo $file
+    if  [[ $file != connectors* ]] || [[ $file != *.json ]] ;
+    then
+      echo "ERROR: new file name: $file ... should not contain space(s)"
+      exit 1
+    fi
+  done
+}
+
 
 
 create_update_connector () {
