@@ -86,7 +86,7 @@ jobs:
           for file in ${{ steps.changed-files.outputs.deleted_files }}; do
             if  [[ $file == connectors* ]] && [[ $file == *.json ]] ;
             then
-              echo $(bash -c "source ./script.sh; delete_connector $file $BASE_URL ${{ vars.CONNECT_REST_BASIC_AUTH_USER }} ${{ secrets.CONNECT_REST_BASIC_AUTH_PASSWORD }}")
+              echo $(bash -c "source ./script.sh; delete_connector $file $BASE_URL ${{ vars.CONNECT_REST_BASIC_AUTH_USER }} ${{ secrets.CONNECT_REST_BASIC_AUTH_PASSWORD }}") || exit 1
 
               # CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
               # DELETE_URL=`echo ${BASE_URL}/connectors/${CONNECTOR_NAME}`
