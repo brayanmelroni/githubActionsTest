@@ -1,7 +1,8 @@
 #!/bin/bash
 
 validate_files(){
-    echo "$1 $2"
+    echo " new files: $1"
+    echo " renamed file pair: $2"
     exit 1
 }
 
