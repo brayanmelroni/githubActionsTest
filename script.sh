@@ -10,6 +10,7 @@ test(){
         echo "t"
     else
         exit 1
+    fi    
 }
 
 delete_connector () {
