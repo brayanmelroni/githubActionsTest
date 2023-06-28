@@ -1,14 +1,5 @@
 #!/bin/bash
 
-validate_files(){
-    renamed_file_pairs=$1
-    for file_pair in $renamed_file_pairs; do
-        echo "$file_pair"
-        echo "--- next set --"
-    done
-    exit 1
-}
-
 
 validate_new_files(){
   created_files=$1
@@ -22,6 +13,14 @@ validate_new_files(){
   done
 }
 
+validate_files(){
+    renamed_file_pairs=$1
+    for file_pair in $renamed_file_pairs; do
+        echo "$file_pair"
+        echo "--- next set --"
+    done
+    exit 1
+}
 
 
 create_update_connector () {
