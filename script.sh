@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 validate_new_files(){
   created_files=$1
   for file in $created_files; do

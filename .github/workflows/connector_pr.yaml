@@ -1,0 +1,23 @@
+name: ConnectorDeploymentWorkflow
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    paths: # Runs when we only change the files that matches the paths.
+      - 'connectors/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: tj-actions/changed-files@v36
+        id: changed-files
+        with:
+          include_all_old_new_renamed_files: true    
+      - name: validate_file_names
+        run: |
+          . script.sh; validate_new_files "${{ steps.changed-files.outputs.added_files }}"
+          . script.sh; validate_files ${{ steps.changed-files.outputs.all_old_new_renamed_files }}
