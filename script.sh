@@ -4,7 +4,7 @@ create_update_connector () {
 } 
 
 delete_connector () {
-    echo "delete connector function"
+    echo "delete connector function $1"
     file=$1
     BASE_URL=$2
     CONNECT_REST_BASIC_AUTH_USER=$3
