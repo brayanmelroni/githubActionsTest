@@ -4,18 +4,18 @@ create_update_connector () {
 } 
 
 delete_connector () {
-    echo "delete connector function $1"
     file=$1
     BASE_URL=$2
     CONNECT_REST_BASIC_AUTH_USER=$3
     CONNECT_REST_BASIC_AUTH_PASSWORD=$4
-    echo "$file"
-    echo "$BASE_URL"
-    echo "$CONNECT_REST_BASIC_AUTH_USER"
-    echo "$CONNECT_REST_BASIC_AUTH_PASSWORD"
-   
+    CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
+    DELETE_URL=`echo ${BASE_URL}/connectors/${CONNECTOR_NAME}`
+    response=$(curl --write-out '%{http_code}' --silent --output response.txt -u ${{ vars.CONNECT_REST_BASIC_AUTH_USER }}:${{ secrets.CONNECT_REST_BASIC_AUTH_PASSWORD }} -s -X DELETE $DELETE_URL)
+    if [ $response == 204 ]
+    then
+        echo "Deleted: $CONNECTOR_NAME"
+    else
+        cat response.txt
+    fi          
 } 
-
-
-
           
