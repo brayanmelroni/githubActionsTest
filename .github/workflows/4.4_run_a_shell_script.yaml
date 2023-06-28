@@ -6,9 +6,10 @@ jobs:
         steps:
           - uses: actions/checkout@v1
           - name: Run a script
+            run: sh ./script.sh 23 34
+          - name: Run a script
             uses: docker://node:12.14.1-alpine3.10 
             with:
               entrypoint: ./script.sh  # chmod +x script.sh
               args: "arg1 arg2"
-          - name: Run a script
-            run: sh ./script.sh 23 34
+          
