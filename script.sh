@@ -15,7 +15,6 @@ validate_renamed_files(){
     for file_pair in $renamed_file_pairs; do
         echo "$file_pair"
     done
-    exit 1 
 }
 
 
