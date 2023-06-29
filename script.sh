@@ -13,6 +13,7 @@ validate_new_files(){
 validate_renamed_files(){
     renamed_file_pairs=$1
     for file_pair in $renamed_file_pairs; do
+        echo "$file_pair"
         IFS=',' read -r -a array <<< "$file_pair"
         echo "${array[1]}"
     done
@@ -39,7 +40,7 @@ create_update_connector () {
             fi
           done
 
-
+ 
 
 
 for file_pair in $renamed_file_pairs; do
