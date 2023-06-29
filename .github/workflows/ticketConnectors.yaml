@@ -48,7 +48,7 @@ jobs:
       - name: validate_file_names
         run: |
           . script.sh; validate_new_files "${{ steps.changed-files.outputs.added_files }}"
-          . script.sh; validate_files ${{ steps.changed-files.outputs.all_old_new_renamed_files }}
+          . script.sh; validate_renamed_files "${{ steps.changed-files.outputs.all_old_new_renamed_files }}"
       - name: Create a test case
         run: |
           curl -X PUT \
