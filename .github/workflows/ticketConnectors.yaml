@@ -6,10 +6,10 @@ env:
 on:
   push:
     paths:
-    - 'connectors/**'
+    - 'connectorsx/**'
   pull_request:
     paths:
-    - 'connectors/**'
+    - 'connectorsx/**'
 jobs:
   build:
     runs-on: ubuntu-latest

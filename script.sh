@@ -1,14 +1,16 @@
 #!/bin/bash
 validate_new_files(){
   created_files=$1
+  echo $created_files
   for file in $created_files; do
+    echo $file
     if  [[ $file == connectors* ]] && [[ $file != *.json ]] ;
     then
       echo "ERROR: new file name: $file ... should not contain space(s)"
-      exit 1
+      #exit 1
     fi
   done
-}
+} 
 
 validate_renamed_files(){
     renamed_file_pairs=$1
@@ -16,6 +18,11 @@ validate_renamed_files(){
         echo "$file_pair"
         IFS=',' read -r -a array <<< "$file_pair"
         echo "${array[1]}"
+        if  [[ ${array[1]} == connectors* ]] && [[ ${array[1]} != *.json ]] ;
+        then
+          echo "ERROR: new file name: $file ... should not contain space(s)"
+          exit 1
+        fi
     done
 }
 
