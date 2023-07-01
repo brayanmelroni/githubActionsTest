@@ -26,6 +26,8 @@ validate_renamed_files(){
     done
 }
 
+x="connectors/snowflake-sink/newa connectors/snowflake-sink/newb test.json connectors/snowflake-sink/newc.json connectors/snowflake-sink/newd test connectors/snowflake-sink/newd^s.json k9s/23.json k9s/24 k9s/24 er k9s/25 test.json k9s/25^test.json"
+validate_new_files $x
 
 
 
