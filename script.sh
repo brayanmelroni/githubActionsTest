@@ -2,10 +2,7 @@
 validate_new_files(){
   created_files=$1
   starts_with=$2
-  echo $created_files
   for file in $created_files; do
-    echo $file
-    echo $starts_with
     if  [[ $file == ${starts_with}* ]] && [[ $file != *.json ]] ;
     then
       echo "ERROR: new file name: $file ... should not contain space(s)"
