@@ -6,7 +6,7 @@ validate_new_files(){
     if  [[ $file == ${starts_with}* ]] && [[ $file != *.json ]] ;
     then
       echo "ERROR: new file name: $file ... should not contain space(s)"
-      #exit 1
+      exit 1
     fi
   done
 } 
