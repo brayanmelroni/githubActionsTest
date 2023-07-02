@@ -16,8 +16,6 @@ jobs:
         with:
           include_all_old_new_renamed_files: true
           files: connectors/**/*.json
-          separator: "\n"
-          
       - name: validate_file_names
         run: |
           . script.sh; validate_new_files "${{ steps.changed-files.outputs.added_files }} ${{ steps.changed-files.outputs.modified_files }}"
