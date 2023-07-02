@@ -1,8 +1,11 @@
 #!/bin/bash
 validate_new_files(){
   created_files=$1
-  echo $1
-  IFS='\n' read -r -a array <<< "$created_files"
+  echo $created_files
+} 
+
+
+ IFS='\n' read -r -a array <<< "$created_files"
   for i in "${array[@]}"
   do
     echo "$i"
@@ -18,8 +21,6 @@ validate_new_files(){
       echo "ERROR: new file name: $file ... should not contain space(s)"
     fi
   done
-} 
-
 
 
   
