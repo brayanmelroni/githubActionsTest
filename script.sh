@@ -1,9 +1,9 @@
 #!/bin/bash
 validate_new_files(){
   created_files=$1
-  starts_with=$2
   for file in $created_files; do
-    if  [[ $file == ${starts_with}* ]] && [[ $file != *.json ]] ;
+    echo $file
+    if  [[ $file != *.json ]] ;
     then
       echo "ERROR: new file name: $file ... should not contain space(s)"
       exit 1
