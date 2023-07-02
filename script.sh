@@ -3,18 +3,22 @@ validate_new_files(){
   created_files=$1
   echo $created_files
 
-  IFS='\n' read -r -a array <<< "$created_files"
+  for file in $created_files; do
+    echo $file
+    if  [[ $file != *.json ]] ;
+    then
+      echo "ERROR: new file name: $file ... should not contain space(s)"
+    fi
+  done
+
+} 
+
+IFS='\n' read -r -a array <<< "$created_files"
   for i in "${array[@]}"
   do
     echo "$i"
    # or do whatever with individual element of the array
   done
-} 
-
-
-
-
-
 
   for file in $created_files; do
     echo $file
