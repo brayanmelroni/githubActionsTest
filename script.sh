@@ -2,15 +2,17 @@
 validate_new_files(){
   created_files=$1
   echo $created_files
-} 
 
-
- IFS='\n' read -r -a array <<< "$created_files"
+  IFS=',' read -r -a array <<< "$created_files"
   for i in "${array[@]}"
   do
     echo "$i"
    # or do whatever with individual element of the array
   done
+} 
+
+
+
 
 
 
