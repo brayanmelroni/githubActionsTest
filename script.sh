@@ -100,8 +100,21 @@ delete_connector () {
     CONNECT_REST_BASIC_AUTH_PASSWORD=$4
     CONNECTOR_NAME=`echo $file | rev |  cut -d/ -f1 | rev | cut -d. -f1`
     URL=`echo ${BASE_URL}/connectors/${CONNECTOR_NAME}`
-    get_config_response=$(curl --write-out '%{http_code}' --silent \
+    get_config_response=$(curl --write-out '%{http_code}' --silent --output /dev/null \
     -u ${CONNECT_REST_BASIC_AUTH_USER}:${CONNECT_REST_BASIC_AUTH_PASSWORD}  -i -X GET -H  "Content-Type:application/json" $URL)
-    echo $get_config_response
+    if [ "$get_config_response" -eq 404 ]
+    then
+      echo "Non existing connector: $CONNECTOR_NAME"
+    else
+      delete_response=$(curl --write-out '%{http_code}' --silent --output response.txt \
+      -u ${CONNECT_REST_BASIC_AUTH_USER}:${CONNECT_REST_BASIC_AUTH_PASSWORD} -s -X DELETE $URL)
+      if [ $delete_response -eq 204 ]
+      then
+        echo "Deleted: $CONNECTOR_NAME"
+      else
+        echo "$(cat response.txt)"
+        exit 1
+      fi     
+    fi
     
 }
