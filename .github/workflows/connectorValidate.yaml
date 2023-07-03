@@ -1,8 +1,9 @@
 name: Connector Deployment Validation
 on:
-  push:
+  pull_request:
+    types: [opened, reopened, synchronize]
     paths:
-    - 'connectors/**'
+      - 'connectors/**'
 jobs:
   build:
     runs-on: ubuntu-latest
