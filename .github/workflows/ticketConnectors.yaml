@@ -52,7 +52,7 @@ jobs:
       - name: Create a test case
         run: |
           curl -X PUT \
-          http://localhost:8083/connectors/25@test/config \
+          http://localhost:8083/connectors/dundee/config \
           -H 'Content-Type: application/json' \
           -H 'Accept: application/json' \
           -d '{
