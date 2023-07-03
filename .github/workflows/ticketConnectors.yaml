@@ -18,8 +18,7 @@ on:
     paths:
       - 'connectors/**'
   push:
-    branches:
-      - main
+    branches: [main]
     paths:
       - 'connectors/**'
 jobs:
