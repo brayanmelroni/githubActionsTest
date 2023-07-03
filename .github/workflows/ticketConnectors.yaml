@@ -4,12 +4,24 @@ env:
   USERNAME: test
   PASSWORD: test
 on:
+  workflow_dispatch:
+    inputs:
+      bosunEnvironment: # User Input Option - Will determine which bosun environment to deploy connectors
+        description: 'Bosun Environment?'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - 'dev'
+          - 'stg'
+          - 'prd'
+    paths:
+      - 'connectors/**'
   push:
+    branches:
+      - main
     paths:
-    - 'connectors/**'
-  pull_request:
-    paths:
-    - 'connectors/**'
+      - 'connectors/**'
 jobs:
   build:
     runs-on: ubuntu-latest
