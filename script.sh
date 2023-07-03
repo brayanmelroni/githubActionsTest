@@ -102,7 +102,7 @@ delete_connector () {
     URL=`echo ${BASE_URL}/connectors/${CONNECTOR_NAME}`
     get_config_response=$(curl --write-out '%{http_code}' --silent \
     -u ${CONNECT_REST_BASIC_AUTH_USER}:${CONNECT_REST_BASIC_AUTH_PASSWORD}  -i -X GET -H  "Content-Type:application/json" $URL)
-    if [ $get_config_response -eq 404 ]
+    if [ "$get_config_response" -eq 404 ]
     then
       echo "Non existing connector: $CONNECTOR_NAME"
     else
